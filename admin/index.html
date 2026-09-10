@@ -7,6 +7,7 @@
 <title>Admin Panel — PT. Timur Abadi Fiber</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-config.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   body{font-family:'Plus Jakarta Sans',sans-serif;background:#E6F4FB;color:#0B1B3D}
@@ -105,23 +106,13 @@
 </div>
 
 <script>
-/* ═══ KONFIGURASI — ganti ke project Supabase produksi TAF saat setup ═══ */
-const SB_URL  = localStorage.getItem('tafSbUrl')  || window.SUPABASE_URL  || 'https://nteekmawjuqbbkrflhqq.supabase.co';
-const SB_ANON = localStorage.getItem('tafSbAnon') || window.SUPABASE_ANON || '';
-let sb = SB_ANON ? supabase.createClient(SB_URL, SB_ANON) : null;
+/* ═══ KONFIGURASI — ter-bake di assets/js/supabase-config.js (produksi) ═══ */
+const SB_URL  = window.SUPABASE_URL  || localStorage.getItem('tafSbUrl')  || '';
+const SB_ANON = window.SUPABASE_ANON || localStorage.getItem('tafSbAnon') || '';
+let sb = SB_URL && SB_ANON ? supabase.createClient(SB_URL, SB_ANON) : null;
 
 const $ = id => document.getElementById(id);
 const toast = (m, err) => { const t = $('toast'); t.textContent = m; t.style.background = err ? '#be123c' : '#0B1B3D'; t.classList.remove('hidden'); setTimeout(() => t.classList.add('hidden'), 2600); };
-
-// Prompt config saat pertama (kalau anon key belum ada)
-if (!SB_ANON) {
-  setTimeout(() => {
-    const url = prompt('Supabase Project URL:', SB_URL); if (url === null) return;
-    const key = prompt('Supabase ANON key:'); if (key === null) return;
-    localStorage.setItem('tafSbUrl', url); localStorage.setItem('tafSbAnon', key);
-    location.reload();
-  }, 300);
-}
 
 async function doLogin() {
   if (!sb) return toast('Konfigurasi Supabase belum lengkap', true);

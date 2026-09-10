@@ -1,0 +1,22 @@
+{
+  "name": "pt-timur-abadi-fiber-production",
+  "version": "1.0.0",
+  "description": "This repository contains a **stand‑alone, deploy‑ready** static website for **PT. Timur Abadi Fiber**. The page showcases: - Company profile and service catalog - Neumorphic 3D UI style (soft UI) with Tailwind‑CSS utility classes - Fully responsive layout (mobile‑first) - Interactive contact & booking form - Floating WhatsApp button for instant chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpXproject/pt-timur-abadi-fiber.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jpXproject/pt-timur-abadi-fiber/issues"
+  },
+  "homepage": "https://github.com/jpXproject/pt-timur-abadi-fiber#readme",
+  "dependencies": {
+    "pg": "^8.23.0"
+  }
+}

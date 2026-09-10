@@ -86,3 +86,9 @@ on conflict (key) do nothing;
 insert into "socialLinks" (platform, url, handle, urutan) values
   ('instagram', 'https://instagram.com/timurabadifiber', '@timurabadifiber', 1)
 on conflict do nothing;
+
+-- ── 5. SINKRON AKUN ADMIN (auto dari Auth — jalankan sekali) ──
+insert into "adminProfiles" (id, email, nama, role, aktif)
+  select id, email, 'Admin TAF', 'ADMIN', true from auth.users
+  where email = 'admin@timurabadi.com'
+  on conflict (id) do update set email = excluded.email, aktif = true;
