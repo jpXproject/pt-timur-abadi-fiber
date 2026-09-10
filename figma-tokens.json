@@ -1,0 +1,40 @@
+{
+  "global": {
+    "color": {
+      "bg-base": { "value": "#E6F4FB", "type": "color" },
+      "primary-blue": { "value": "#0055A5", "type": "color" },
+      "secondary-turquoise": { "value": "#00AEC7", "type": "color" },
+      "accent-yellow": { "value": "#FFC72C", "type": "color" },
+      "text-navy": { "value": "#0B1B3D", "type": "color" },
+      "text-muted": { "value": "#4A657E", "type": "color" },
+      "shadow-dark": { "value": "#B8D4E3", "type": "color" },
+      "shadow-light": { "value": "#FFFFFF", "type": "color" },
+      "whatsapp": { "value": "#25D366", "type": "color" }
+    },
+    "borderRadius": {
+      "card": { "value": "20px", "type": "borderRadius" },
+      "input": { "value": "14px", "type": "borderRadius" },
+      "pill": { "value": "9999px", "type": "borderRadius" }
+    },
+    "boxShadow": {
+      "neumorphic-card": {
+        "value": [
+          { "x": "9px", "y": "9px", "blur": "18px", "spread": "0px", "color": "#B8D4E3", "type": "dropShadow" },
+          { "x": "-9px", "y": "-9px", "blur": "18px", "spread": "0px", "color": "#FFFFFF", "type": "dropShadow" }
+        ],
+        "type": "boxShadow"
+      },
+      "neumorphic-inset": {
+        "value": [
+          { "x": "4px", "y": "4px", "blur": "8px", "spread": "0px", "color": "#B8D4E3", "type": "innerShadow" },
+          { "x": "-4px", "y": "-4px", "blur": "8px", "spread": "0px", "color": "#FFFFFF", "type": "innerShadow" }
+        ],
+        "type": "boxShadow"
+      }
+    },
+    "fontFamilies": {
+      "heading": { "value": "Fredoka One, cursive", "type": "fontFamilies" },
+      "body": { "value": "Plus Jakarta Sans, sans-serif", "type": "fontFamilies" }
+    }
+  }
+}

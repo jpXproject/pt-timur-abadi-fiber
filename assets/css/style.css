@@ -1,0 +1,204 @@
+/* ========================================
+   PT. TIMUR ABADI FIBER - Neumorphic 3D Design System
+   jpXCode | jpxcode.pages.dev
+   ======================================== */
+
+:root {
+  /* Color Palette */
+  --bg-base: #E6F4FB;
+  --primary-blue: #0055A5;
+  --secondary-turquoise: #00AEC7;
+  --accent-yellow: #FFC72C;
+  --text-navy: #0B1B3D;
+  --text-muted: #4A657E;
+  --shadow-dark: #B8D4E3;
+  --shadow-light: #FFFFFF;
+  --whatsapp-green: #25D366;
+
+  /* Border Radius */
+  --radius-card: 20px;
+  --radius-input: 14px;
+  --radius-pill: 9999px;
+
+  /* Neumorphic Shadows */
+  --neumorphic-card: 9px 9px 18px var(--shadow-dark), -9px -9px 18px var(--shadow-light);
+  --neumorphic-card-sm: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light);
+  --neumorphic-inset: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  --neumorphic-btn: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light);
+  --neumorphic-btn-hover: 2px 2px 6px var(--shadow-dark), -2px -2px 6px var(--shadow-light);
+  --neumorphic-btn-secondary: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light);
+  --neumorphic-btn-secondary-hover: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+  --neumorphic-badge: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+  --neumorphic-fab: 6px 6px 14px rgba(184, 212, 227, 0.9), -6px -6px 14px var(--shadow-light);
+  --neumorphic-fab-hover: 8px 8px 18px rgba(184, 212, 227, 1), -8px -8px 18px var(--shadow-light);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+}
+
+/* ========================================
+   Base Typography
+   ======================================== */
+body {
+  background-color: var(--bg-base);
+  color: var(--text-navy);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+h1, h2, h3, .font-heading {
+  font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ========================================
+   Neumorphic Component Classes
+   ======================================== */
+
+/* Raised Card - Flat surface */
+.neu-flat {
+  background: var(--bg-base);
+  box-shadow: var(--neumorphic-card);
+  border-radius: var(--radius-card);
+}
+
+.neu-flat-sm {
+  background: var(--bg-base);
+  box-shadow: var(--neumorphic-card-sm);
+  border-radius: var(--radius-input);
+}
+
+/* Inset / Pressed State */
+.neu-inset {
+  background: var(--bg-base);
+  box-shadow: var(--neumorphic-inset);
+  border: 1px solid rgba(184, 212, 227, 0.4);
+  border-radius: var(--radius-input);
+}
+
+/* Primary Button */
+.neu-btn {
+  background: linear-gradient(145deg, #005bb0, #004c94);
+  box-shadow: var(--neumorphic-btn);
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.neu-btn:hover {
+  box-shadow: var(--neumorphic-btn-hover);
+  transform: translateY(1px);
+}
+
+.neu-btn:active {
+  box-shadow: var(--neumorphic-inset);
+  transform: translateY(2px);
+}
+
+/* Secondary Button */
+.neu-btn-secondary {
+  background: var(--bg-base);
+  box-shadow: var(--neumorphic-btn-secondary);
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.neu-btn-secondary:hover {
+  box-shadow: var(--neumorphic-btn-secondary-hover);
+}
+
+/* Badge */
+.neu-badge {
+  background: var(--bg-base);
+  box-shadow: var(--neumorphic-badge);
+  border-radius: var(--radius-pill);
+}
+
+/* Floating Action Button */
+.neu-fab {
+  box-shadow: var(--neumorphic-fab);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.neu-fab:hover {
+  transform: scale(1.06);
+  box-shadow: var(--neumorphic-fab-hover);
+}
+
+/* Focus States for Accessibility */
+.neu-inset:focus-within,
+input.neu-inset:focus,
+select.neu-inset:focus,
+textarea.neu-inset:focus {
+  outline: none;
+  box-shadow: var(--neumorphic-inset), 0 0 0 2px var(--primary-blue);
+}
+
+/* Form Elements */
+input.neu-inset,
+select.neu-inset,
+textarea.neu-inset {
+  background: var(--bg-base);
+  border: 1px solid rgba(184, 212, 227, 0.4);
+  color: var(--text-navy);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input.neu-inset::placeholder,
+select.neu-inset::placeholder,
+textarea.neu-inset::placeholder {
+  color: var(--text-muted);
+}
+
+/* Selection Styling */
+::selection {
+  background-color: var(--secondary-turquoise);
+  color: white;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+.text-primary { color: var(--primary-blue); }
+.text-secondary { color: var(--secondary-turquoise); }
+.text-accent { color: var(--accent-yellow); }
+.text-navy { color: var(--text-navy); }
+.text-muted { color: var(--text-muted); }
+
+.bg-primary { background-color: var(--primary-blue); }
+.bg-secondary { background-color: var(--secondary-turquoise); }
+.bg-accent { background-color: var(--accent-yellow); }
+.bg-base { background-color: var(--bg-base); }
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+@media (max-width: 768px) {
+  :root {
+    --neumorphic-card: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
+    --neumorphic-card-sm: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+    --neumorphic-inset: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+  }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+@media print {
+  .neu-fab,
+  header,
+  footer {
+    display: none;
+  }
+  
+  .neu-flat,
+  .neu-flat-sm,
+  .neu-inset,
+  .neu-btn,
+  .neu-btn-secondary {
+    box-shadow: none;
+    border: 1px solid var(--shadow-dark);
+  }
+}

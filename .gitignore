@@ -1,0 +1,10 @@
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+# Editor
+.vscode/
+.idea/
+*.log
+# QA artifacts
+qa-*.png
