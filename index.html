@@ -7,7 +7,8 @@
 <meta name="description" content="PT. Timur Abadi Fiber — Produsen & General Contractor wahana waterpark fiberglass sejak 2017. Konstruksi waterpark, desain 3D, water slide FRP, playground air, renovasi, maintenance & painting. Melayani seluruh Indonesia. 25+ tahun pengalaman, 21+ klien nasional (Jatim Park, Hawai Waterpark, Taman Safari Prigen)."/>
 <meta name="keywords" content="kontraktor waterpark, produsen wahana air, fiberglass FRP, water slide, konstruksi kolam renang, playground air, Timur Abadi Fiber, Tulungagung"/>
 <meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://timurabadi.com/"/>
+<!-- canonical dual-mode: domain resmi otomatis terdeteksi saat www.timurabadi-fiber.com aktif -->
+<script>document.write('<link rel="canonical" href="https://' + (location.hostname.includes('timurabadi-fiber.com') ? 'www.timurabadi-fiber.com' : 'timurabadi.com') + '/"/>');</script>
 <!-- Open Graph / Social -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="PT. Timur Abadi Fiber — Kontraktor Wahana Waterpark Fiberglass"/>
@@ -185,6 +186,7 @@
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#tentang">Tentang</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#layanan">Layanan</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#klien">Klien Resmi</a>
+<a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#galeri">Galeri</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#keunggulan">Keunggulan</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#alur-kerja">Alur Kerja</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#faq">FAQ</a>
@@ -208,7 +210,7 @@ BOOKING
 <div class="lg:col-span-7 space-y-6">
 <div class="inline-flex items-center gap-2 neu-pressed px-4 py-2 rounded-full text-xs font-bold text-ocean">
 <span class="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse"></span>
-            BERPENGALAMAN 25+ TAHUN • SEJAK 2017 GENERAL CONTRACTOR WATERPARK
+            <span data-live="hero_badge">BERPENGALAMAN 25+ TAHUN • SEJAK 2017 GENERAL CONTRACTOR WATERPARK</span>
           </div>
 <h1 class="font-fredoka text-3xl sm:text-4xl lg:text-5xl text-navyText leading-tight">
             Wujudkan Wahana <span class="text-ocean">Waterpark Impian</span> Bersama Kontraktor Profesional
@@ -544,6 +546,22 @@ BOOKING
 </div>
 </div>
 </section>
+<!-- SECTION: GALERI PROYEK REAL (dikelola via /admin — fallback placeholder otomatis) -->
+<section class="max-w-7xl mx-auto px-4 sm:px-8 py-12" id="galeri">
+<div class="neu-flat p-8 sm:p-12">
+<div class="text-center mb-8 space-y-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-ocean block">Dokumentasi Lapangan</span>
+<h2 class="font-fredoka text-3xl sm:text-4xl text-navyText">Galeri <span class="text-ocean">Proyek Real</span></h2>
+<p class="text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">Foto langsung dari lokasi pengerjaan — konstruksi sipil, fabrikasi wahana, hingga hasil akhir yang beroperasi. Update berkala dari tim lapangan kami.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="galeriGrid">
+<div class="neu-flat p-8 md:col-span-2 lg:col-span-4 text-center rounded-2xl">
+<p class="font-fredoka text-lg font-bold text-navyText">Dokumentasi Proyek Segera Hadir</p>
+<p class="text-xs text-slate-500 mt-2 max-w-md mx-auto leading-relaxed">Galeri foto real proyek waterpark kami sedang dalam proses kurasi. Ingin melihat portofolio lengkap lebih awal? <a class="text-ocean font-bold hover:underline" href="#booking">Hubungi tim kami →</a></p>
+</div>
+</div>
+</div>
+</section>
 <!-- SECTION: KEUNGGULAN KAMI -->
 <section class="max-w-7xl mx-auto px-4 sm:px-8 py-12" id="keunggulan">
 <div class="neu-flat p-8 sm:p-12">
@@ -803,7 +821,8 @@ BOOKING
           </p>
 </div>
 </div>
-<div class="mt-8 pt-6 border-t border-sky-200/50 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-medium">
+<div class="mt-8 pt-6 border-t border-sky-200/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
+<div class="flex items-center gap-2" id="socialLinks"></div>
 <p>© Timur Abadi Fiber. All Rights Reserved.</p>
 <p class="mt-2 sm:mt-0">Tulungagung • Desain: Neumorphic 3D (Soft UI) • Developer: <a class="text-ocean font-bold hover:underline" href="https://jpxcode.pages.dev" rel="noopener" target="_blank">jpXCode</a></p>
 </div>
@@ -851,5 +870,6 @@ function kirimBookingWhatsApp(event) {
 }
 </script>
 <!-- SEO Grade A: JSON-LD Organization + LocalBusiness + Service + FAQ (rich results Google) -->
+<script defer src="assets/js/site-live.js"></script>
 <script defer src="assets/js/schema-seo.js"></script>
 </body></html>

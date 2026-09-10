@@ -8,3 +8,8 @@ desktop.ini
 *.log
 # QA artifacts
 qa-*.png
+
+.vercel
+# Secrets
+.env
+node_modules/

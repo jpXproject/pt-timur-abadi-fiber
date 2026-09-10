@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Admin Panel — PT. Timur Abadi Fiber</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:#E6F4FB;color:#0B1B3D}
+  .neu{background:#E6F4FB;border-radius:20px;box-shadow:9px 9px 18px #B8D4E3,-9px -9px 18px #fff}
+  .neu-in{background:#E6F4FB;border-radius:14px;box-shadow:inset 4px 4px 8px #B8D4E3,inset -4px -4px 8px #fff;border:none;outline:none}
+  .neu-in:focus{box-shadow:inset 5px 5px 10px #a4c7d9,inset -5px -5px 10px #fff}
+  .neu-btn{background:#E6F4FB;border-radius:14px;box-shadow:5px 5px 12px #B8D4E3,-5px -5px 12px #fff;transition:.15s;cursor:pointer}
+  .neu-btn:active{box-shadow:inset 4px 4px 8px #B8D4E3,inset -4px -4px 8px #fff}
+  .btn-p{background:linear-gradient(145deg,#005bb0,#004a90);color:#fff;box-shadow:5px 5px 12px #B8D4E3,-5px -5px 12px #fff}
+  .fredoka{font-family:'Fredoka',sans-serif}
+</style>
+</head>
+<body class="min-h-screen p-4 sm:p-8">
+<div class="max-w-5xl mx-auto">
+
+  <!-- ═══ LOGIN ═══ -->
+  <section id="loginView" class="max-w-sm mx-auto mt-10">
+    <div class="neu p-8">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center text-3xl mb-3" style="box-shadow:inset 4px 4px 8px #B8D4E3,inset -4px -4px 8px #fff">🔐</div>
+        <h1 class="fredoka text-xl font-bold text-[#0055A5]">Admin Panel</h1>
+        <p class="text-xs text-slate-500 font-semibold">PT. TIMUR ABADI FIBER</p>
+      </div>
+      <div class="space-y-3">
+        <input id="email" type="email" placeholder="email@timurabadi.com" class="neu-in w-full px-4 py-3 text-sm"/>
+        <input id="pass" type="password" placeholder="Password" class="neu-in w-full px-4 py-3 text-sm"/>
+        <button onclick="doLogin()" class="btn-p w-full py-3 rounded-2xl text-sm font-bold">MASUK</button>
+        <p id="loginErr" class="text-xs text-rose-600 font-bold text-center hidden"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PANEL ═══ -->
+  <section id="panelView" class="hidden">
+    <header class="neu px-6 py-4 flex items-center justify-between mb-5">
+      <div>
+        <h1 class="fredoka text-lg font-bold text-[#0055A5]">⚙️ Admin Panel TAF</h1>
+        <p id="userLabel" class="text-xs text-slate-500 font-semibold"></p>
+      </div>
+      <div class="flex gap-2">
+        <a href="/" target="_blank" class="neu-btn px-4 py-2 text-xs font-bold text-[#0055A5]">👁 Lihat Situs</a>
+        <button onclick="doLogout()" class="neu-btn px-4 py-2 text-xs font-bold text-rose-600">Keluar</button>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <div class="flex gap-2 mb-5 flex-wrap">
+      <button onclick="tab('konten')"  id="tb-konten"  class="neu-btn px-5 py-2.5 text-xs font-bold">📝 Konten</button>
+      <button onclick="tab('galeri')"  id="tb-galeri"  class="neu-btn px-5 py-2.5 text-xs font-bold">📷 Galeri Proyek</button>
+      <button onclick="tab('medsos')"  id="tb-medsos"  class="neu-btn px-5 py-2.5 text-xs font-bold">📱 Media Sosial</button>
+    </div>
+
+    <!-- KONTEN -->
+    <div id="tab-konten" class="neu p-6">
+      <h2 class="fredoka font-bold mb-1">📝 Konten Website</h2>
+      <p class="text-xs text-slate-500 mb-4">Perubahan langsung tampil di website (cache 60 detik).</p>
+      <div id="kontenList" class="space-y-3"></div>
+      <button onclick="simpanKonten()" class="btn-p px-6 py-3 rounded-xl text-xs font-bold mt-4">SIMPAN SEMUA PERUBAHAN</button>
+    </div>
+
+    <!-- GALERI -->
+    <div id="tab-galeri" class="neu p-6 hidden">
+      <h2 class="fredoka font-bold mb-1">📷 Galeri Proyek Real</h2>
+      <p class="text-xs text-slate-500 mb-4">Foto dokumentasi proyek yang tampil di website. Upload via Supabase Storage (bucket <b>gallery</b>) atau tempel URL foto.</p>
+      <div class="grid sm:grid-cols-2 gap-3 mb-4">
+        <input id="gJudul" placeholder="Judul proyek — cth: Water Slide Hawai Malang" class="neu-in px-4 py-3 text-sm"/>
+        <input id="gKlien" placeholder="Nama klien (opsional)" class="neu-in px-4 py-3 text-sm"/>
+        <input id="gLokasi" placeholder="Lokasi — cth: Malang, Jawa Timur" class="neu-in px-4 py-3 text-sm"/>
+        <input id="gUrl" placeholder="URL foto (upload ke Storage lalu tempel link)" class="neu-in px-4 py-3 text-sm"/>
+      </div>
+      <button onclick="tambahFoto()" class="btn-p px-6 py-3 rounded-xl text-xs font-bold mb-5">+ TAMBAH FOTO</button>
+      <div id="galeriList" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+
+    <!-- MEDSOS -->
+    <div id="tab-medsos" class="neu p-6 hidden">
+      <h2 class="fredoka font-bold mb-1">📱 Media Sosial Resmi</h2>
+      <p class="text-xs text-slate-500 mb-4">Ikon otomatis tampil di footer website begitu link aktif.</p>
+      <div class="grid sm:grid-cols-3 gap-3 mb-4">
+        <select id="mPlatform" class="neu-in px-4 py-3 text-sm">
+          <option value="instagram">Instagram</option>
+          <option value="facebook">Facebook</option>
+          <option value="tiktok">TikTok</option>
+          <option value="youtube">YouTube</option>
+          <option value="twitter">X / Twitter</option>
+        </select>
+        <input id="mUrl" placeholder="https://instagram.com/…" class="neu-in px-4 py-3 text-sm"/>
+        <input id="mHandle" placeholder="@handle (opsional)" class="neu-in px-4 py-3 text-sm"/>
+      </div>
+      <button onclick="tambahMedsos()" class="btn-p px-6 py-3 rounded-xl text-xs font-bold mb-5">+ TAMBAH LINK</button>
+      <div id="medsosList" class="space-y-2"></div>
+    </div>
+  </section>
+
+  <p id="toast" class="fixed bottom-5 right-5 hidden px-5 py-3 rounded-2xl bg-[#0B1B3D] text-white text-xs font-bold shadow-2xl"></p>
+</div>
+
+<script>
+/* ═══ KONFIGURASI — ganti ke project Supabase produksi TAF saat setup ═══ */
+const SB_URL  = localStorage.getItem('tafSbUrl')  || window.SUPABASE_URL  || 'https://nteekmawjuqbbkrflhqq.supabase.co';
+const SB_ANON = localStorage.getItem('tafSbAnon') || window.SUPABASE_ANON || '';
+let sb = SB_ANON ? supabase.createClient(SB_URL, SB_ANON) : null;
+
+const $ = id => document.getElementById(id);
+const toast = (m, err) => { const t = $('toast'); t.textContent = m; t.style.background = err ? '#be123c' : '#0B1B3D'; t.classList.remove('hidden'); setTimeout(() => t.classList.add('hidden'), 2600); };
+
+// Prompt config saat pertama (kalau anon key belum ada)
+if (!SB_ANON) {
+  setTimeout(() => {
+    const url = prompt('Supabase Project URL:', SB_URL); if (url === null) return;
+    const key = prompt('Supabase ANON key:'); if (key === null) return;
+    localStorage.setItem('tafSbUrl', url); localStorage.setItem('tafSbAnon', key);
+    location.reload();
+  }, 300);
+}
+
+async function doLogin() {
+  if (!sb) return toast('Konfigurasi Supabase belum lengkap', true);
+  const { error } = await sb.auth.signInWithPassword({ email: $('email').value.trim(), password: $('pass').value });
+  if (error) { $('loginErr').textContent = error.message; $('loginErr').classList.remove('hidden'); return; }
+  masuk();
+}
+async function doLogout() { await sb.auth.signOut(); location.reload(); }
+function masuk() {
+  $('loginView').classList.add('hidden'); $('panelView').classList.remove('hidden');
+  $('userLabel').textContent = sb.auth.getUser().data?.user?.email || '';
+  muatKonten(); muatGaleri(); muatMedsos();
+}
+function tab(n) {
+  ['konten','galeri','medsos'].forEach(t => $('tab-' + t).classList.toggle('hidden', t !== n));
+}
+
+/* ── KONTEN ── */
+let kontenCache = [];
+async function muatKonten() {
+  const { data, error } = await sb.from('siteContent').select('*').order('kategori,key');
+  if (error) return toast('Gagal muat konten: ' + error.message, true);
+  kontenCache = data || [];
+  $('kontenList').innerHTML = kontenCache.map(k => `
+    <div class="grid sm:grid-cols-[180px_1fr] gap-2 items-center">
+      <label class="text-[11px] font-black uppercase text-slate-500">${k.label || k.key}<br><span class="font-mono text-[9px] text-slate-400">${k.key}</span></label>
+      <input class="neu-in px-4 py-2.5 text-sm" data-key="${k.key}" value="${(k.value || '').replace(/"/g, '&quot;')}"/>
+    </div>`).join('');
+}
+async function simpanKonten() {
+  const inputs = [...$('kontenList').querySelectorAll('input[data-key]')];
+  for (const inp of inputs) {
+    const { error } = await sb.from('siteContent').update({ value: inp.value, updatedAt: new Date().toISOString() }).eq('key', inp.dataset.key);
+    if (error) return toast('Gagal simpan ' + inp.dataset.key, true);
+  }
+  toast('✅ Konten tersimpan — website otomatis terupdate');
+}
+
+/* ── GALERI ── */
+async function muatGaleri() {
+  const { data, error } = await sb.from('gallery').select('*').order('urutan');
+  if (error) return toast('Gagal muat galeri: ' + error.message, true);
+  $('galeriList').innerHTML = (data || []).map(g => `
+    <div class="neu-in p-3">
+      <div class="h-32 rounded-xl bg-slate-200 mb-2 overflow-hidden flex items-center justify-center">
+        ${g.fotoUrl ? `<img src="${g.fotoUrl}" class="w-full h-full object-cover" loading="lazy" onerror="this.parentElement.innerHTML='🖼️'">` : '🖼️'}
+      </div>
+      <p class="text-xs font-bold truncate">${g.judul}</p>
+      <p class="text-[10px] text-slate-500 truncate">${g.klien || ''} ${g.lokasi ? '· ' + g.lokasi : ''}</p>
+      <div class="flex gap-2 mt-2">
+        <button onclick="toggleFoto('${g.id}',${!g.aktif})" class="neu-btn flex-1 py-1.5 text-[10px] font-bold ${g.aktif ? 'text-emerald-600' : 'text-slate-400'}">${g.aktif ? 'TAMPIL' : 'SEMBUNYI'}</button>
+        <button onclick="hapusFoto('${g.id}')" class="neu-btn flex-1 py-1.5 text-[10px] font-bold text-rose-600">HAPUS</button>
+      </div>
+    </div>`).join('') || '<p class="text-xs text-slate-400">Belum ada foto — tambahkan proyek pertama ↑</p>';
+}
+async function tambahFoto() {
+  const judul = $('gJudul').value.trim(), url = $('gUrl').value.trim();
+  if (!judul || !url) return toast('Judul & URL foto wajib diisi', true);
+  const { error } = await sb.from('gallery').insert({ judul, klien: $('gKlien').value.trim(), lokasi: $('gLokasi').value.trim(), fotoUrl: url });
+  if (error) return toast('Gagal: ' + error.message, true);
+  $('gJudul').value = $('gKlien').value = $('gLokasi').value = $('gUrl').value = '';
+  toast('✅ Foto proyek ditambahkan'); muatGaleri();
+}
+async function toggleFoto(id, aktif) { await sb.from('gallery').update({ aktif }).eq('id', id); muatGaleri(); }
+async function hapusFoto(id) { if (!confirm('Hapus foto ini?')) return; await sb.from('gallery').delete().eq('id', id); muatGaleri(); toast('Foto dihapus'); }
+
+/* ── MEDSOS ── */
+async function muatMedsos() {
+  const { data, error } = await sb.from('socialLinks').select('*').order('urutan');
+  if (error) return toast('Gagal muat medsos: ' + error.message, true);
+  $('medsosList').innerHTML = (data || []).map(m => `
+    <div class="neu-in px-4 py-3 flex items-center justify-between gap-3">
+      <div class="min-w-0">
+        <span class="text-xs font-black uppercase text-[#0055A5]">${m.platform}</span>
+        <a href="${m.url}" target="_blank" rel="noopener" class="block text-xs text-slate-500 truncate hover:underline">${m.url}</a>
+      </div>
+      <div class="flex gap-2 shrink-0">
+        <button onclick="toggleMedsos('${m.id}',${!m.aktif})" class="neu-btn px-3 py-1.5 text-[10px] font-bold ${m.aktif ? 'text-emerald-600' : 'text-slate-400'}">${m.aktif ? 'AKTIF' : 'OFF'}</button>
+        <button onclick="hapusMedsos('${m.id}')" class="neu-btn px-3 py-1.5 text-[10px] font-bold text-rose-600">✕</button>
+      </div>
+    </div>`).join('') || '<p class="text-xs text-slate-400">Belum ada link medsos.</p>';
+}
+async function tambahMedsos() {
+  const url = $('mUrl').value.trim();
+  if (!url.startsWith('http')) return toast('URL tidak valid', true);
+  const { error } = await sb.from('socialLinks').insert({ platform: $('mPlatform').value, url, handle: $('mHandle').value.trim() });
+  if (error) return toast('Gagal: ' + error.message, true);
+  $('mUrl').value = $('mHandle').value = '';
+  toast('✅ Link medsos ditambahkan'); muatMedsos();
+}
+async function toggleMedsos(id, aktif) { await sb.from('socialLinks').update({ aktif }).eq('id', id); muatMedsos(); }
+async function hapusMedsos(id) { await sb.from('socialLinks').delete().eq('id', id); muatMedsos(); toast('Link dihapus'); }
+
+/* Cek sesi login saat buka */
+sb?.auth.getSession().then(({ data }) => { if (data?.session) masuk(); });
+</script>
+</body>
+</html>

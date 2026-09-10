@@ -10,14 +10,20 @@
  *   3. Service x6 — masing-masing layanan sebagai entitas
  *   4. FAQPage — jawaban langsung di hasil pencarian (rich result)
  */
+// DOMAIN DUAL-MODE: preview pakai vercel.app, produksi otomatis pakai domain resmi
+// saat website berjalan di www.timurabadi-fiber.com (migrasi tanpa edit kode)
+const DOMAIN = location.hostname.includes('timurabadi-fiber.com')
+  ? 'https://www.timurabadi-fiber.com'
+  : 'https://timurabadi.com';
+
 const ORG = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
-  '@id': 'https://timurabadi.com/#organization',
+  '@id': DOMAIN + '/#organization',
   name: 'PT. Timur Abadi Fiber',
   alternateName: ['Timur Abadi Fiber', 'TAF Tulungagung', 'Kontraktor Waterpark Timur Abadi'],
   description: 'Produsen & General Contractor wahana waterpark fiberglass (FRP) di Tulungagung, Jawa Timur. Melayani konstruksi waterpark, desain 3D, water slide, playground air, renovasi, maintenance & painting untuk klien di seluruh Indonesia — 25+ tahun pengalaman, 21+ klien skala nasional.',
-  url: 'https://timurabadi.com/',
+  url: DOMAIN + '/',
   telephone: ['+62-812-3824-2926', '+62-813-5713-0170'],
   email: 'admin@timurabadi.com',
   foundingDate: '2001',
@@ -54,8 +60,8 @@ const ORG = {
 const WEBSITE = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  '@id': 'https://timurabadi.com/#website',
-  url: 'https://timurabadi.com/',
+  '@id': DOMAIN + '/#website',
+  url: DOMAIN + '/',
   name: 'PT. Timur Abadi Fiber',
   publisher: { '@id': 'https://timurabadi.com/#organization' },
   inLanguage: 'id-ID',
@@ -72,7 +78,7 @@ const LAYANAN = [
   '@type': 'Service',
   name: nama,
   description: desk,
-  provider: { '@id': 'https://timurabadi.com/#organization' },
+  provider: { '@id': DOMAIN + '/#organization' },
   areaServed: { '@type': 'Country', name: 'Indonesia' },
 }));
 
