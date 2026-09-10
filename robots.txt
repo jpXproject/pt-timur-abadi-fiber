@@ -1,0 +1,5 @@
+# PT. Timur Abadi Fiber — robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://timurabadi.com/sitemap.xml
