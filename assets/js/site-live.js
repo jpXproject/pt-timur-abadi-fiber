@@ -18,8 +18,8 @@
 (function () {
   'use strict';
 
-  var SB_URL  = localStorage.getItem('tafSbUrl')  || '';
-  var SB_ANON = localStorage.getItem('tafSbAnon') || '';
+  var SB_URL  = window.SUPABASE_URL  || localStorage.getItem('tafSbUrl')  || '';
+  var SB_ANON = window.SUPABASE_ANON || localStorage.getItem('tafSbAnon') || '';
   // Tanpa konfigurasi → langsung tampilkan galeri placeholder, selesai.
   if (!SB_URL || !SB_ANON || typeof supabase === 'undefined') {
     document.addEventListener('DOMContentLoaded', renderFallbackGallery);
