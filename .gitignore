@@ -13,3 +13,4 @@ qa-*.png
 # Secrets
 .env
 node_modules/
+.admin-credentials.txt
