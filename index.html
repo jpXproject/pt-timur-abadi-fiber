@@ -22,9 +22,9 @@
 <meta name="geo.placename" content="Tulungagung, Jawa Timur"/>
 <meta name="geo.position" content="-8.0658;111.9"/>
 <meta name="ICBM" content="-8.0658, 111.9"/>
-<meta name="theme-color" content="#0055A5"/>
+<meta name="theme-color" content="#0284C7"/>
 <!-- Favicon (inline SVG — tanpa file tambahan) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%230055A5' d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/%3E%3C/svg%3E"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%230284C7' d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/%3E%3C/svg%3E"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -34,14 +34,16 @@
       theme: {
         extend: {
           colors: {
-            neuBg: '#E6F4FB',
-            neuDark: '#B8D4E3',
-            ocean: '#0055A5',
-            oceanDark: '#003e7a',
-            turquoise: '#00AEC7',
+            neuBg: '#F0FDF4',        /* Fresh Mint White — latar utama */
+            neuDark: '#B9E0E8',      /* Cyan Tint Soft Shadow — bayangan neumorphic */
+            ocean: '#0284C7',        /* Bright Cyan — navbar, judul, aksen utama */
+            oceanDark: '#0369A1',
+            turquoise: '#0E9F6E',    /* Splash Teal — ikon, badge, poin eco-friendly */
             sunset: '#FFC72C',
             waGreen: '#25D366',
             navyText: '#0B1B3D',
+            ctaOrange: '#FF5A1F',    /* Neon Orange — tombol konversi utama */
+            ctaOrangeDark: '#E8480F',
           },
           fontFamily: {
             heading: ['"Fredoka"', 'sans-serif'],
@@ -53,69 +55,86 @@
   </script>
 <style>
     body {
-      background-color: #E6F4FB;
+      background-color: #F0FDF4;
       color: #0B1B3D;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Neumorphic 3D Shadows */
+    /* Neumorphic 3D Shadows — Cyan Tint (segar seperti air kolam) */
     .neu-flat {
-      background: #E6F4FB;
-      box-shadow: 9px 9px 18px #B8D4E3, -9px -9px 18px #FFFFFF;
+      background: #F0FDF4;
+      box-shadow: 9px 9px 18px #B9E0E8, -9px -9px 18px #FFFFFF;
       border-radius: 20px;
     }
     
     .neu-flat-sm {
-      background: #E6F4FB;
-      box-shadow: 6px 6px 12px #B8D4E3, -6px -6px 12px #FFFFFF;
+      background: #F0FDF4;
+      box-shadow: 6px 6px 12px #B9E0E8, -6px -6px 12px #FFFFFF;
       border-radius: 16px;
     }
 
     .neu-pressed {
-      background: #E6F4FB;
-      box-shadow: inset 5px 5px 10px #B8D4E3, inset -5px -5px 10px #FFFFFF;
+      background: #F0FDF4;
+      box-shadow: inset 5px 5px 10px #B9E0E8, inset -5px -5px 10px #FFFFFF;
       border-radius: 20px;
     }
 
     .neu-input {
-      background: #E6F4FB;
-      box-shadow: inset 4px 4px 8px #B8D4E3, inset -4px -4px 8px #FFFFFF;
+      background: #F0FDF4;
+      box-shadow: inset 4px 4px 8px #B9E0E8, inset -4px -4px 8px #FFFFFF;
       border: none;
       outline: none;
       border-radius: 14px;
       transition: all 0.2s ease;
     }
     .neu-input:focus {
-      box-shadow: inset 5px 5px 10px #a4c7d9, inset -5px -5px 10px #FFFFFF;
+      box-shadow: inset 5px 5px 10px #93CFE0, inset -5px -5px 10px #FFFFFF;
     }
 
     .neu-btn-raised {
-      background: #E6F4FB;
-      box-shadow: 6px 6px 14px #B8D4E3, -6px -6px 14px #FFFFFF;
+      background: #F0FDF4;
+      box-shadow: 6px 6px 14px #B9E0E8, -6px -6px 14px #FFFFFF;
       border-radius: 16px;
       transition: all 0.2s ease;
     }
     .neu-btn-raised:hover {
-      box-shadow: 3px 3px 6px #B8D4E3, -3px -3px 6px #FFFFFF;
+      box-shadow: 3px 3px 6px #B9E0E8, -3px -3px 6px #FFFFFF;
       transform: translateY(1px);
     }
     .neu-btn-raised:active {
-      box-shadow: inset 4px 4px 8px #B8D4E3, inset -4px -4px 8px #FFFFFF;
+      box-shadow: inset 4px 4px 8px #B9E0E8, inset -4px -4px 8px #FFFFFF;
       transform: translateY(2px);
     }
 
     .neu-btn-primary {
-      background: linear-gradient(145deg, #005bb0, #004a90);
-      box-shadow: 6px 6px 14px #B8D4E3, -6px -6px 14px #FFFFFF;
+      background: linear-gradient(145deg, #0284C7, #0369A1);
+      box-shadow: 6px 6px 14px #B9E0E8, -6px -6px 14px #FFFFFF;
       border-radius: 16px;
       transition: all 0.2s ease;
     }
     .neu-btn-primary:hover {
-      box-shadow: 3px 3px 8px #B8D4E3, -3px -3px 8px #FFFFFF;
+      box-shadow: 3px 3px 8px #B9E0E8, -3px -3px 8px #FFFFFF;
       opacity: 0.95;
     }
     .neu-btn-primary:active {
-      box-shadow: inset 4px 4px 8px rgba(0,0,0,0.35);
+      box-shadow: inset 4px 4px 8px rgba(3, 60, 90, 0.35);
+      transform: translateY(2px);
+    }
+
+    /* Tombol Konversi Utama — Neon Orange, kontras maksimal di atas mint */
+    .neu-btn-cta {
+      background: linear-gradient(145deg, #FF5A1F, #E8480F);
+      box-shadow: 6px 6px 14px rgba(255, 90, 31, 0.35), -6px -6px 14px #FFFFFF;
+      border-radius: 16px;
+      transition: all 0.2s ease;
+    }
+    .neu-btn-cta:hover {
+      box-shadow: 4px 4px 10px rgba(255, 90, 31, 0.45), -3px -3px 8px #FFFFFF;
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+    .neu-btn-cta:active {
+      box-shadow: inset 4px 4px 8px rgba(150, 45, 5, 0.45);
       transform: translateY(2px);
     }
 
@@ -140,7 +159,7 @@
 </head>
 <body class="min-h-screen relative antialiased selection:bg-cyan-200 selection:text-navyText">
 <!-- TOP BAR: KONTAK CEPAT & JAM LAYANAN RESMI -->
-<div class="bg-[#E6F4FB] border-b border-sky-200/60 text-xs py-2 px-4 sm:px-8">
+<div class="bg-[#F0FDF4] border-b border-sky-200/60 text-xs py-2 px-4 sm:px-8">
 <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-slate-600 font-medium">
 <div class="flex items-center gap-4 flex-wrap">
 <span class="inline-flex items-center gap-1.5 text-navyText">
@@ -169,7 +188,7 @@
 </div>
 </div>
 <!-- TOP NAVIGATION HEADER -->
-<header class="sticky top-0 z-40 px-4 sm:px-8 py-3 bg-[#E6F4FB]/95 backdrop-blur-md">
+<header class="sticky top-0 z-40 px-4 sm:px-8 py-3 bg-[#F0FDF4]/95 backdrop-blur-md">
 <div class="max-w-7xl mx-auto flex items-center justify-between neu-flat px-6 py-3.5">
 <a class="flex items-center gap-3 group" href="#">
 <div class="w-12 h-12 neu-pressed flex items-center justify-center rounded-2xl text-ocean font-fredoka text-2xl font-bold">
@@ -191,12 +210,12 @@
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#alur-kerja">Alur Kerja</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#faq">FAQ</a>
 </nav>
-<a class="neu-btn-primary px-5 py-2.5 text-white font-bold text-xs sm:text-sm tracking-wider hidden md:flex items-center gap-2" href="#booking">
+<a class="neu-btn-cta px-5 py-2.5 text-white font-bold text-xs sm:text-sm tracking-wider hidden md:flex items-center gap-2" href="#booking">
 <span>KONSULTASI PROYEK</span>
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
 </a>
 <!-- Mobile CTA ringkas (ganti menu hamburger — 1 tujuan utama: booking) -->
-<a aria-label="Konsultasi Proyek" class="neu-btn-primary md:hidden px-4 py-2.5 text-white font-bold text-xs tracking-wider flex items-center gap-1.5" href="#booking">
+<a aria-label="Konsultasi Proyek" class="neu-btn-cta md:hidden px-4 py-2.5 text-white font-bold text-xs tracking-wider flex items-center gap-1.5" href="#booking">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 BOOKING
 </a>
@@ -219,7 +238,7 @@ BOOKING
             Selamat Datang di <strong class="text-navyText font-semibold">PT. Timur Abadi Fiber</strong>. Berawal dari produsen wahana seluncur &amp; kerajinan fiberglass, seiring perkembangan bisnis dan permintaan klien, sejak tahun 2017 kami berekspansi menjadi <em>General Contractor Waterpark</em> terpadu yang mencakup perencanaan sipil, sistem plumbing hidrolik, hingga fabrikasi dan instalasi seluruh wahana ramah lingkungan.
           </p>
 <div class="flex flex-wrap gap-4 pt-2">
-<a class="neu-btn-primary px-7 py-4 text-white font-bold text-sm tracking-wide flex items-center gap-3" href="https://wa.me/6281238242926?text=Halo%20PT.%20Timur%20Abadi%20Fiber,%20saya%20tertarik%20konsultasi%20pembuatan%20wahana%20waterpark" rel="noopener noreferrer" target="_blank">
+<a class="neu-btn-cta px-7 py-4 text-white font-bold text-sm tracking-wide flex items-center gap-3" href="https://wa.me/6281238242926?text=Halo%20PT.%20Timur%20Abadi%20Fiber,%20saya%20tertarik%20konsultasi%20pembuatan%20wahana%20waterpark" rel="noopener noreferrer" target="_blank">
 <span>Konsultasi Proyek (WhatsApp)</span>
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
 </a>
@@ -250,7 +269,7 @@ BOOKING
 <!-- Right: 3D Visual Neumorphic Showcase -->
 <div class="lg:col-span-5 flex justify-center">
 <div class="w-full max-w-md neu-pressed p-6 rounded-[28px] relative">
-<div class="neu-flat p-6 rounded-2xl space-y-5 bg-[#E6F4FB]">
+<div class="neu-flat p-6 rounded-2xl space-y-5 bg-[#F0FDF4]">
 <!-- Mockup Graphic: Tropical Water Slide -->
 <div class="h-56 rounded-xl bg-gradient-to-br from-sky-400 via-cyan-500 to-ocean relative flex items-center justify-center overflow-hidden shadow-inner">
 <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-white/20 rounded-full blur-xl"></div>
@@ -271,7 +290,7 @@ BOOKING
 <div class="space-y-2.5 pt-1">
 <div class="flex items-center justify-between neu-flat-sm p-3 px-4">
 <span class="text-xs font-semibold text-slate-600 flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Tenaga Ahli
+<span class="w-2 h-2 rounded-full bg-turquoise"></span> Tenaga Ahli
                   </span>
 <span class="text-xs font-bold text-ocean">23 Teknisi &amp; Desainer Berpengalaman</span>
 </div>
@@ -283,7 +302,7 @@ BOOKING
 </div>
 <div class="flex items-center justify-between neu-flat-sm p-3 px-4">
 <span class="text-xs font-semibold text-slate-600 flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-amber-500"></span> 24/7 Project Support
+<span class="w-2 h-2 rounded-full bg-turquoise"></span> 24/7 Project Support
                   </span>
 <span class="text-xs font-bold text-amber-600">Dukungan Kontinu Setiap Hari</span>
 </div>
@@ -583,7 +602,7 @@ BOOKING
 <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
 <!-- Item 1 -->
 <div class="neu-flat-sm p-5 space-y-2">
-<div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-ocean font-bold text-base">01</div>
+<div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-turquoise font-bold text-base">01</div>
 <h4 class="font-fredoka text-base font-bold text-navyText">Material FRP Ramah Lingkungan</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Ketebalan serat kaca bertingkat dilapisi pelindung anti-UV, membuat warna awet berkilau serta tahan bahan kimia air kolam.</p>
 </div>
@@ -595,13 +614,13 @@ BOOKING
 </div>
 <!-- Item 3 -->
 <div class="neu-flat-sm p-5 space-y-2">
-<div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-amber-500 font-bold text-base">03</div>
+<div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-turquoise font-bold text-base">03</div>
 <h4 class="font-fredoka text-base font-bold text-navyText">Finishing Halus &amp; Anti-Luka</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Sambungan gelcoat presisi tanpa nat kasar, menjamin keselamatan pengunjung saat meluncur tanpa risiko goresan kulit.</p>
 </div>
 <!-- Item 4 -->
 <div class="neu-flat-sm p-5 space-y-2">
-<div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-emerald-600 font-bold text-base">04</div>
+<div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-turquoise font-bold text-base">04</div>
 <h4 class="font-fredoka text-base font-bold text-navyText">24/7 Support &amp; Bebas Perantara</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Komunikasi transparan langsung dengan tim pabrik dan kontraktor kami, didukung monitoring 24 jam untuk ketepatan waktu proyek.</p>
 </div>
@@ -619,31 +638,31 @@ BOOKING
 <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
 <!-- Step 1 -->
 <div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-ocean text-lg mb-4">1</div>
+<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">1</div>
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Konsultasi &amp; Survei</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Diskusi kontur lahan, target kapasitas pengunjung, dan estimasi rencana anggaran.</p>
 </div>
 <!-- Step 2 -->
 <div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-ocean text-lg mb-4">2</div>
+<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">2</div>
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Desain 3D &amp; RAB</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Pembuatan blueprint 3D visual, gambar arsitektur sipil, instalasi plumbing, dan rincian RAB.</p>
 </div>
 <!-- Step 3 -->
 <div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-ocean text-lg mb-4">3</div>
+<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">3</div>
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Fabrikasi Pabrik</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Pencetakan komponen fiberglass di workshop dengan quality control ketat bahan resin pilihan.</p>
 </div>
 <!-- Step 4 -->
 <div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-ocean text-lg mb-4">4</div>
+<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">4</div>
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Sipil, Plumbing &amp; Instalasi</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Pengiriman ke seluruh Indonesia &amp; perakitan langsung oleh 23 teknisi ahli berpengalaman.</p>
 </div>
 <!-- Step 5 -->
 <div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-ocean text-lg mb-4">5</div>
+<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">5</div>
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Uji Kelayakan &amp; Serah Terima</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Commissioning debit pompa air, uji luncur beban keamanan, dan garansi resmi.</p>
 </div>
@@ -717,7 +736,7 @@ BOOKING
 </div>
 <!-- Submit Button -->
 <div class="pt-2 text-center">
-<button class="neu-btn-primary px-10 py-4 text-white font-fredoka text-base tracking-wide font-bold inline-flex items-center gap-3" type="submit">
+<button class="neu-btn-cta px-10 py-4 text-white font-fredoka text-base tracking-wide font-bold inline-flex items-center gap-3" type="submit">
 <span>Kirim Pengajuan Jadwal Survei</span>
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
 </button>

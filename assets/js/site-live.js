@@ -41,11 +41,11 @@
       : '';
     var initials = esc((g.judul || 'P').split(/\s+/).slice(0, 2).map(function (w) { return w[0] || ''; }).join('').toUpperCase());
     var badge = g.klien
-      ? '<span class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-lg text-[10px] font-bold text-[#0055A5] shadow">' + esc(g.klien) + '</span>'
+      ? '<span class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-lg text-[10px] font-bold text-[#0284C7] shadow">' + esc(g.klien) + '</span>'
       : '';
     return (
       '<div class="neu-flat overflow-hidden rounded-2xl group">' +
-        '<div class="h-48 bg-gradient-to-br from-sky-400 via-cyan-500 to-[#0055A5] relative flex items-center justify-center">' +
+        '<div class="h-48 bg-gradient-to-br from-sky-400 via-cyan-500 to-[#0284C7] relative flex items-center justify-center">' +
           (img || '<span class="font-fredoka text-5xl text-white/80">' + initials + '</span>') + badge +
         '</div>' +
         '<div class="p-4">' +
