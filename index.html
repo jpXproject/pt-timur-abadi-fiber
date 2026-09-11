@@ -154,9 +154,24 @@
     .font-fredoka {
       font-family: 'Fredoka', sans-serif;
     }
+
+    /* ═══ MOBILE COMPACT — auto penyesuaian layar kecil ═══ */
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    @media (max-width: 640px) {
+      body { font-size: 14px; }
+      /* kartu & section lebih rapat */
+      .neu-flat { border-radius: 16px; }
+      .neu-flat-sm { border-radius: 12px; }
+      /* grid stat 4 kolom → 2 baris × 2 rapat */
+      .grid.grid-cols-2 { gap: 0.625rem; }
+      /* tabel proposal & alur tetap lega via overflow */
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      /* CTA stack penuh */
+      .neu-btn-cta, .neu-btn-raised { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
-<body class="min-h-screen relative antialiased selection:bg-cyan-200 selection:text-navyText">
+<body class="min-h-screen relative antialiased overflow-x-hidden selection:bg-cyan-200 selection:text-navyText">
 <!-- TOP BAR: KONTAK CEPAT & JAM LAYANAN RESMI -->
 <div class="bg-[#F0FDF4] border-b border-sky-200/60 text-xs py-2 px-4 sm:px-8">
 <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-slate-600 font-medium">
@@ -188,21 +203,20 @@
 </div>
 <!-- TOP NAVIGATION HEADER -->
 <header class="sticky top-0 z-40 px-4 sm:px-8 py-3 bg-[#F0FDF4]/95 backdrop-blur-md">
-<div class="max-w-7xl mx-auto flex items-center justify-between neu-flat px-6 py-3.5">
+<div class="max-w-7xl mx-auto flex items-center justify-between neu-flat px-3.5 py-2.5 sm:px-6 sm:py-3.5">
 <a class="flex items-center gap-3 group" href="#">
 <div class="w-12 h-12 neu-pressed flex items-center justify-center rounded-2xl overflow-hidden flex-shrink-0">
 <img src="assets/icons/logo.png" alt="Logo resmi PT. Timur Abadi Fiber" class="w-10 h-10 object-contain" width="40" height="40"/>
 </div>
 <div>
-<span class="font-fredoka text-xl sm:text-2xl text-ocean font-bold tracking-wide block leading-none">TIMUR ABADI FIBER</span>
-<span class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase tracking-wider">Waterpark General Contractor &amp; FRP Manufacturer</span>
+<span class="font-fredoka text-base sm:text-2xl text-ocean font-bold tracking-wide block leading-none">TIMUR ABADI FIBER</span>
+<span class="hidden sm:text-xs text-[9px] text-slate-500 font-semibold uppercase tracking-wider">Waterpark General Contractor &amp; FRP Manufacturer</span>
 </div>
 </a>
 <nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-navyText">
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#tentang">Tentang</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#layanan">Layanan</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#klien">Klien Resmi</a>
-<a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#galeri">Galeri</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#keunggulan">Keunggulan</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#alur-kerja">Alur Kerja</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#faq">FAQ</a>
@@ -219,8 +233,8 @@ BOOKING
 </div>
 </header>
 <!-- HERO SECTION -->
-<section class="max-w-7xl mx-auto px-4 sm:px-8 py-8 sm:py-14" id="tentang">
-<div class="neu-flat p-8 sm:p-12 lg:p-14 relative overflow-hidden">
+<section class="max-w-7xl mx-auto px-3 sm:px-8 py-6 sm:py-14" id="tentang">
+<div class="neu-flat p-4 sm:p-8 lg:p-14 relative overflow-hidden">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 <!-- Left: Text -->
 <div class="lg:col-span-7 space-y-6">
@@ -228,39 +242,39 @@ BOOKING
 <span class="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse"></span>
             <span data-live="hero_badge">BERPENGALAMAN 25+ TAHUN • SEJAK 2017 GENERAL CONTRACTOR WATERPARK</span>
           </div>
-<h1 class="font-fredoka text-3xl sm:text-4xl lg:text-5xl text-navyText leading-tight">
+<h1 class="font-fredoka text-[22px] leading-tight sm:text-4xl lg:text-5xl text-navyText">
             Wujudkan Wahana <span class="text-ocean">Waterpark Impian</span> Bersama Kontraktor Profesional
           </h1>
 <!-- HERO IMAGE — gerbang proyek real (webp 19KB, preload LCP) -->
 <img src="assets/img/hero-waterpark.webp?v=2" alt="Gerbang proyek waterpark buatan PT. Timur Abadi Fiber — pionir kontraktor wahana waterpark fiberglass sejak 1995" class="w-full rounded-2xl shadow-lg mb-6" width="1408" height="768" fetchpriority="high" decoding="async"/>
-<p class="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+<p class="text-slate-600 text-sm sm:text-lg leading-relaxed font-normal">
             Selamat Datang di <strong class="text-navyText font-semibold">PT. Timur Abadi Fiber</strong>. Berawal dari produsen wahana seluncur &amp; kerajinan fiberglass, seiring perkembangan bisnis dan permintaan klien, sejak tahun 2017 kami berekspansi menjadi <em>General Contractor Waterpark</em> terpadu yang mencakup perencanaan sipil, sistem plumbing hidrolik, hingga fabrikasi dan instalasi seluruh wahana ramah lingkungan.
           </p>
-<div class="flex flex-wrap gap-4 pt-2">
-<a class="neu-btn-cta px-7 py-4 text-white font-bold text-sm tracking-wide flex items-center gap-3" href="https://wa.me/6281238242926?text=Halo%20PT.%20Timur%20Abadi%20Fiber,%20saya%20tertarik%20konsultasi%20pembuatan%20wahana%20waterpark" rel="noopener noreferrer" target="_blank">
+<div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
+<a class="neu-btn-cta w-full sm:w-auto px-5 py-3 sm:px-7 sm:py-4 text-white font-bold text-xs sm:text-sm tracking-wide flex items-center justify-center gap-2 sm:gap-3" href="https://wa.me/6281238242926?text=Halo%20PT.%20Timur%20Abadi%20Fiber,%20saya%20tertarik%20konsultasi%20pembuatan%20wahana%20waterpark" rel="noopener noreferrer" target="_blank">
 <span>Konsultasi Proyek (WhatsApp)</span>
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
 </a>
-<a class="neu-btn-raised px-7 py-4 text-ocean font-bold text-sm tracking-wide" href="#layanan">
+<a class="neu-btn-raised w-full sm:w-auto px-5 py-3 sm:px-7 sm:py-4 text-ocean font-bold text-xs sm:text-sm tracking-wide flex items-center justify-center" href="#layanan">
               Lihat 6 Layanan Utama
             </a>
 </div>
 <!-- Highlight Metric Badges - Real Data -->
 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-sky-200/60">
 <div class="neu-flat-sm p-4 text-center">
-<span class="font-fredoka text-2xl sm:text-3xl text-ocean font-bold block">25+ Thn</span>
+<span class="font-fredoka text-xl sm:text-3xl text-ocean font-bold block">25+ Thn</span>
 <span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Pengalaman Industri</span>
 </div>
 <div class="neu-flat-sm p-4 text-center">
-<span class="font-fredoka text-2xl sm:text-3xl text-turquoise font-bold block">23</span>
+<span class="font-fredoka text-xl sm:text-3xl text-turquoise font-bold block">23</span>
 <span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Tenaga Ahli Profesional</span>
 </div>
 <div class="neu-flat-sm p-4 text-center">
-<span class="font-fredoka text-2xl sm:text-3xl text-sunset font-bold block">21+</span>
+<span class="font-fredoka text-xl sm:text-3xl text-sunset font-bold block">21+</span>
 <span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Klien Skala Nasional</span>
 </div>
 <div class="neu-flat-sm p-4 text-center">
-<span class="font-fredoka text-2xl sm:text-3xl text-emerald-600 font-bold block">21 / 3</span>
+<span class="font-fredoka text-xl sm:text-3xl text-emerald-600 font-bold block">21 / 3</span>
 <span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Completed &amp; Running</span>
 </div>
 </div>
@@ -345,10 +359,10 @@ BOOKING
 </div>
 </section>
 <!-- SECTION: 6 LAYANAN UTAMA (DATA ASLI DARI WEBSITE RESMI) -->
-<section class="max-w-7xl mx-auto px-4 sm:px-8 py-12" id="layanan">
+<section class="max-w-7xl mx-auto px-3 sm:px-8 py-8 sm:py-12" id="layanan">
 <div class="text-center max-w-2xl mx-auto mb-12">
 <span class="text-xs font-extrabold uppercase tracking-widest text-ocean block mb-1">Layanan Komprehensif</span>
-<h2 class="font-fredoka text-3xl sm:text-4xl text-navyText">Kami Menyediakan Layanan</h2>
+<h2 class="font-fredoka text-[22px] leading-tight sm:text-3xl lg:text-4xl text-navyText">Kami Menyediakan Layanan</h2>
 <p class="text-slate-600 text-sm mt-2">Solusi terintegrasi kontraktor umum waterpark mulai dari masterplan, rekayasa struktur, hingga pemeliharaan berkala.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -475,94 +489,94 @@ BOOKING
 </div>
 </section>
 <!-- SECTION: KLIEN KAMI & DOKUMENTASI PROYEK (DATA NYATA WEBSITE RESMI) -->
-<section class="max-w-7xl mx-auto px-4 sm:px-8 py-12" id="klien">
-<div class="neu-flat p-8 sm:p-12">
+<section class="max-w-7xl mx-auto px-3 sm:px-8 py-8 sm:py-12" id="klien">
+<div class="neu-flat p-4 sm:p-8 lg:p-12">
 <div class="text-center max-w-2xl mx-auto mb-10">
 <span class="text-xs font-extrabold uppercase tracking-widest text-ocean block mb-1">Bukti Rekam Jejak 25+ Tahun</span>
-<h2 class="font-fredoka text-3xl sm:text-4xl text-navyText">Daftar Klien &amp; Proyek Unggulan</h2>
+<h2 class="font-fredoka text-[22px] leading-tight sm:text-3xl lg:text-4xl text-navyText">Daftar Klien &amp; Proyek Unggulan</h2>
 <p class="text-slate-600 text-sm mt-2">Dipercaya oleh destinasi wisata air dan theme park terbesar di berbagai penjuru Nusantara.</p>
 </div>
 <!-- Klien Cards Grid -->
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-10">
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-6 mb-8 sm:mb-10">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/jatim-park.png" alt="Logo Jatim Park 1, 2, 3 Batu — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Jatim Park 1, 2, 3</h4>
 <p class="text-[11px] text-slate-500 font-medium">Batu, Jawa Timur</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/hawai.png" alt="Logo Hawai Waterpark Malang — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Hawai Waterpark</h4>
 <p class="text-[11px] text-slate-500 font-medium">Malang, Jawa Timur</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/taman-safari.png" alt="Logo Taman Safari Prigen Pasuruan — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Taman Safari Prigen</h4>
 <p class="text-[11px] text-slate-500 font-medium">Pasuruan, Jawa Timur</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/jogja-bay.png" alt="Logo Jogja Bay Waterpark Yogyakarta — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Jogja Bay</h4>
 <p class="text-[11px] text-slate-500 font-medium">Yogyakarta</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-ocean font-bold text-sm">BW</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Banyuwangi Waterpark</h4>
 <p class="text-[11px] text-slate-500 font-medium">Banyuwangi, Jawa Timur</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/sengkaling.png" alt="Logo Sengkaling Waterpark Malang — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Sengkaling Waterpark</h4>
 <p class="text-[11px] text-slate-500 font-medium">Malang, Jawa Timur</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-amber-500 font-bold text-sm">SO</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Saigon Waterpark</h4>
 <p class="text-[11px] text-slate-500 font-medium">Pasuruan, Jawa Timur</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/selecta.png" alt="Logo Taman Rekreasi Selecta Batu — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Selecta &amp; Agrowisata</h4>
 <p class="text-[11px] text-slate-500 font-medium">Batu, Jawa Timur</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-ocean font-bold text-sm">BT</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Batam Top 100</h4>
 <p class="text-[11px] text-slate-500 font-medium">Batam, Kepulauan Riau</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-turquoise font-bold text-sm">KN</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Kuningan Waterpark</h4>
 <p class="text-[11px] text-slate-500 font-medium">Kuningan, Jawa Barat</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-amber-500 font-bold text-sm">AM</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Am &amp; Singapur WTP</h4>
 <p class="text-[11px] text-slate-500 font-medium">Medan &amp; Giantar, Sumatera</p>
 </div>
-<div class="neu-flat-sm p-4 text-center hover:scale-105 transition">
-<div class="h-16 flex items-center justify-center mb-2">
+<div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
+<div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/pangkalpinang.png" alt="Logo Proyek WTP Pangkal Pinang & Tahuna — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Pangkal Pinang &amp; Tahuna</h4>
@@ -588,29 +602,13 @@ BOOKING
 </div>
 </div>
 </section>
-<!-- SECTION: GALERI PROYEK REAL (dikelola via /admin — fallback placeholder otomatis) -->
-<section class="max-w-7xl mx-auto px-4 sm:px-8 py-12" id="galeri">
-<div class="neu-flat p-8 sm:p-12">
-<div class="text-center mb-8 space-y-2">
-<span class="text-xs font-extrabold uppercase tracking-widest text-ocean block">Dokumentasi Lapangan</span>
-<h2 class="font-fredoka text-3xl sm:text-4xl text-navyText">Galeri <span class="text-ocean">Proyek Real</span></h2>
-<p class="text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">Foto langsung dari lokasi pengerjaan — konstruksi sipil, fabrikasi wahana, hingga hasil akhir yang beroperasi. Update berkala dari tim lapangan kami.</p>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="galeriGrid">
-<div class="neu-flat p-8 md:col-span-2 lg:col-span-4 text-center rounded-2xl">
-<p class="font-fredoka text-lg font-bold text-navyText">Dokumentasi Proyek Segera Hadir</p>
-<p class="text-xs text-slate-500 mt-2 max-w-md mx-auto leading-relaxed">Galeri foto real proyek waterpark kami sedang dalam proses kurasi. Ingin melihat portofolio lengkap lebih awal? <a class="text-ocean font-bold hover:underline" href="#booking">Hubungi tim kami →</a></p>
-</div>
-</div>
-</div>
-</section>
 <!-- SECTION: KEUNGGULAN KAMI -->
-<section class="max-w-7xl mx-auto px-4 sm:px-8 py-12" id="keunggulan">
-<div class="neu-flat p-8 sm:p-12">
+<section class="max-w-7xl mx-auto px-3 sm:px-8 py-8 sm:py-12" id="keunggulan">
+<div class="neu-flat p-4 sm:p-8 lg:p-12">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 <div class="lg:col-span-5 space-y-4">
 <span class="text-xs font-extrabold uppercase tracking-widest text-ocean block">Nilai Lebih</span>
-<h2 class="font-fredoka text-3xl sm:text-4xl text-navyText leading-snug">
+<h2 class="font-fredoka text-[22px] leading-tight sm:text-3xl lg:text-4xl text-navyText leading-snug">
             Mengapa Memilih <br/><span class="text-ocean">PT. Timur Abadi Fiber?</span>
 </h2>
 <p class="text-slate-600 text-sm leading-relaxed">
@@ -652,10 +650,10 @@ BOOKING
 </div>
 </section>
 <!-- SECTION: ALUR PROSES KERJA -->
-<section class="max-w-7xl mx-auto px-4 sm:px-8 py-12" id="alur-kerja">
+<section class="max-w-7xl mx-auto px-3 sm:px-8 py-8 sm:py-12" id="alur-kerja">
 <div class="text-center max-w-2xl mx-auto mb-12">
 <span class="text-xs font-extrabold uppercase tracking-widest text-ocean block mb-1">Tahapan Sistematis</span>
-<h2 class="font-fredoka text-3xl sm:text-4xl text-navyText">Alur Proses Kerja Kami</h2>
+<h2 class="font-fredoka text-[22px] leading-tight sm:text-3xl lg:text-4xl text-navyText">Alur Proses Kerja Kami</h2>
 <p class="text-slate-600 text-sm mt-2">Dari konsep visual, perencanaan sipil plumbing, hingga wahana siap dioperasikan menyambut ribuan wisatawan.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
@@ -693,7 +691,7 @@ BOOKING
 </section>
 <!-- SECTION: FORMULIR BOOKING & KONSULTASI PROYEK -->
 <section class="max-w-5xl mx-auto px-4 sm:px-8 py-12" id="booking">
-<div class="neu-flat p-8 sm:p-12">
+<div class="neu-flat p-4 sm:p-8 lg:p-12">
 <div class="text-center max-w-xl mx-auto mb-8">
 <div class="w-14 h-14 neu-pressed rounded-2xl flex items-center justify-center text-ocean mx-auto mb-4">
 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -773,7 +771,7 @@ BOOKING
 <div class="neu-flat p-8 sm:p-10">
 <div class="text-center max-w-2xl mx-auto mb-8">
 <span class="text-xs font-extrabold uppercase tracking-widest text-ocean block mb-1">Pertanyaan Umum</span>
-<h2 class="font-fredoka text-3xl sm:text-4xl text-navyText">Frequently Asked Questions</h2>
+<h2 class="font-fredoka text-[22px] leading-tight sm:text-3xl lg:text-4xl text-navyText">Frequently Asked Questions</h2>
 <p class="text-slate-600 text-sm mt-2">Yang paling sering ditanyakan klien sebelum memulai proyek waterpark.</p>
 </div>
 <div class="space-y-3">
