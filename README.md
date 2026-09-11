@@ -1,7 +1,7 @@
-# PT. Timur Abadi Fiber – Production Website
+# CV. Abadi Timur Fiber – Production Website
 
 ## Overview
-This repository contains a **stand‑alone, deploy‑ready** static website for **PT. Timur Abadi Fiber**. The page showcases:
+This repository contains a **stand‑alone, deploy‑ready** static website for **CV. Abadi Timur Fiber**. The page showcases:
 - Company profile and service catalog
 - Neumorphic 3D UI style (soft UI) with Tailwind‑CSS utility classes
 - Fully responsive layout (mobile‑first)
