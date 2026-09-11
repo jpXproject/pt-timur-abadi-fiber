@@ -1,5 +1,13 @@
 # PT. Timur Abadi Fiber — robots.txt
+# Domain preview aktif; saat migrasi ke www.timurabadi-fiber.com ganti baris Sitemap.
 User-agent: *
 Allow: /
+Disallow: /admin
 
-Sitemap: https://timurabadi.com/sitemap.xml
+# AI & search engines — diizinkan penuh (visibilitas maksimal)
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://pt-timur-abadi-fiber-production.vercel.app/sitemap.xml

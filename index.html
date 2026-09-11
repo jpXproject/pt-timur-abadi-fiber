@@ -7,13 +7,13 @@
 <meta name="description" content="PT. Timur Abadi Fiber — Produsen & General Contractor wahana waterpark fiberglass sejak 2017. Konstruksi waterpark, desain 3D, water slide FRP, playground air, renovasi, maintenance & painting. Melayani seluruh Indonesia. 25+ tahun pengalaman, 21+ klien nasional (Jatim Park, Hawai Waterpark, Taman Safari Prigen)."/>
 <meta name="keywords" content="kontraktor waterpark, produsen wahana air, fiberglass FRP, water slide, konstruksi kolam renang, playground air, Timur Abadi Fiber, Tulungagung"/>
 <meta name="robots" content="index, follow"/>
-<!-- canonical dual-mode: domain resmi otomatis terdeteksi saat www.timurabadi-fiber.com aktif -->
-<script>document.write('<link rel="canonical" href="https://' + (location.hostname.includes('timurabadi-fiber.com') ? 'www.timurabadi-fiber.com' : 'timurabadi.com') + '/"/>');</script>
+<!-- canonical self-host: deterministik untuk crawler; ganti saat migrasi ke www.timurabadi-fiber.com -->
+<link rel="canonical" href="https://pt-timur-abadi-fiber-production.vercel.app/"/>
 <!-- Open Graph / Social -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="PT. Timur Abadi Fiber — Kontraktor Wahana Waterpark Fiberglass"/>
 <meta property="og:description" content="General Contractor Waterpark terpadu: perencanaan, sipil, plumbing, fabrikasi & instalasi wahana fiberglass. 25+ tahun pengalaman, 21+ klien skala nasional."/>
-<meta property="og:url" content="https://timurabadi.com/"/>
+<meta property="og:url" content="https://pt-timur-abadi-fiber-production.vercel.app/"/>
 <meta property="og:locale" content="id_ID"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="PT. Timur Abadi Fiber — Kontraktor Wahana Waterpark Fiberglass Tulungagung"/>
@@ -31,6 +31,11 @@
 <meta name="geo.position" content="-8.0658;111.9"/>
 <meta name="ICBM" content="-8.0658, 111.9"/>
 <meta name="theme-color" content="#0284C7"/>
+<!-- LIVE CHAT CRISP — WAJIB di <head> sesuai panduan resmi Crisp (di body akhir kadang tak tampil) -->
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="41f39066-e01f-44d0-a056-1d9983855ebc";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<!-- GA4 — isi GA4_MEASUREMENT_ID (format G-XXXXXXXXXX) lalu otomatis aktif; kosong = no-op tanpa request -->
+<script>window.GA4_MEASUREMENT_ID="";</script>
+<script async src="assets/js/ga4-loader.js"></script>
 <!-- Favicon (inline SVG — tanpa file tambahan) -->
 <!-- Favicon resmi (ICO buatan klien) + ikon perangkat -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
@@ -295,23 +300,17 @@
       color: #0E9F6E;
     }
 
-    /* Tombol back-to-top — melayang mengikuti scroll, otomatis menghindar
-       dari widget Crisp (pindah ke kiri saat chat Crisp terbuka) */
+    /* Tombol back-to-top — permanen di KIRI bawah (Crisp chat di kanan, tidak pernah bertabrakan) */
     #backTop {
       opacity: 0;
       pointer-events: none;
-      bottom: 5.5rem;
-      right: 1.25rem;
-      left: auto;
-      transition: opacity 0.3s ease, right 0.3s ease, left 0.3s ease, transform 0.3s ease;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     #backTop.tampil {
       opacity: 1;
       pointer-events: auto;
-    }
-    #backTop.hindari-crisp {
-      right: auto;
-      left: 1.25rem;
     }
     #backTop.tampil:hover {
       transform: translateY(-2px);
@@ -1128,17 +1127,6 @@ BOOKING
   addEventListener('scroll', function () {
     b.classList.toggle('tampil', scrollY > 400);
   }, { passive: true });
-  /* Menghindari Crisp: saat chat Crisp terbuka, tombol pindah ke kiri bawah */
-  var dodge = function () {
-    var open = false;
-    try { open = !!(window.$crisp && window.$crisp.is && window.$crisp.is('chat:opened')); } catch (e) {}
-    b.classList.toggle('hindari-crisp', open);
-  };
-  try {
-    window.$crisp.on('chat:opened', dodge);
-    window.$crisp.on('chat:closed', dodge);
-  } catch (e) {}
-  setInterval(dodge, 1200);
 })();
 
 /* ═══ SCROLL-SPY NAVBAR — menu menyala mengikuti section yang sedang dilihat ═══ */
@@ -1190,6 +1178,7 @@ function kirimBookingWhatsApp(event) {
     '• Lokasi/Catatan: ' + (ambil('catatan') || '-')
   ].join('\n');
   window.open('https://wa.me/6281238242926?text=' + encodeURIComponent(pesan), '_blank', 'noopener');
+  if (typeof window.trackBookingSubmit === 'function') window.trackBookingSubmit(ambil('layanan'));
   return false;
 }
 </script>
@@ -1198,6 +1187,5 @@ function kirimBookingWhatsApp(event) {
 <script src="assets/js/supabase-config.js"></script>
 <script defer src="assets/js/site-live.js"></script>
 <!-- LIVE CHAT CRISP — chat realtime pelanggan ↔ admin (mobile app Crisp tersedia) -->
-<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="41f39066-e01f-44d0-a056-1d9983855ebc";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 <script defer src="assets/js/schema-seo.js"></script>
 </body></html>

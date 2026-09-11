@@ -10,11 +10,11 @@
  *   3. Service x6 — masing-masing layanan sebagai entitas
  *   4. FAQPage — jawaban langsung di hasil pencarian (rich result)
  */
-// DOMAIN DUAL-MODE: preview pakai vercel.app, produksi otomatis pakai domain resmi
-// saat website berjalan di www.timurabadi-fiber.com (migrasi tanpa edit kode)
+// DOMAIN DUAL-MODE: preview pakai vercel.app (konsisten dgn canonical/og:url/sitemap),
+// produksi otomatis pakai domain resmi saat berjalan di www.timurabadi-fiber.com
 const DOMAIN = location.hostname.includes('timurabadi-fiber.com')
   ? 'https://www.timurabadi-fiber.com'
-  : 'https://timurabadi.com';
+  : 'https://pt-timur-abadi-fiber-production.vercel.app';
 
 const ORG = {
   '@context': 'https://schema.org',
