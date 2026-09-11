@@ -6,6 +6,10 @@
 node_modules/
 # Watermark build cache
 assets/img/.wm-cache/
+# Master foto asli (tanpa watermark) - tidak boleh ter-deploy
+assets/img/Layanan Komprehensif/
+assets/img/Tahapan Sistematis/
+assets/img/nilai lebih/
 # Secrets & internal
 .env
 .admin-credentials.txt

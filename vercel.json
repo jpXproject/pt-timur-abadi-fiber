@@ -9,6 +9,9 @@
   "redirects": [
     { "source": "/assets/img/card.png", "destination": "/blocked", "permanent": false },
     { "source": "/assets/img/.wm-cache/:path*", "destination": "/blocked", "permanent": false },
+    { "source": "/assets/img/Layanan Komprehensif/:path*", "destination": "/blocked", "permanent": false },
+    { "source": "/assets/img/Tahapan Sistematis/:path*", "destination": "/blocked", "permanent": false },
+    { "source": "/assets/img/nilai lebih/:path*", "destination": "/blocked", "permanent": false },
     { "source": "/assets/img/hero-waterpark.jpg", "destination": "/blocked", "permanent": false },
     { "source": "/assets/css/tw-src.css", "destination": "/blocked", "permanent": false },
     { "source": "/assets/css/style.css", "destination": "/blocked", "permanent": false },
