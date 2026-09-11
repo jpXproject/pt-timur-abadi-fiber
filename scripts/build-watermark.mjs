@@ -80,6 +80,11 @@ const TARGETS = [
   'tahap-3-fabrikasi.webp',
   'tahap-4-instalasi.webp',
   'tahap-5-serah-terima.webp',
+  'nilai-lebih-1.webp',
+  'nilai-lebih-2.webp',
+  'nilai-lebih-3.webp',
+  'nilai-lebih-4.webp',
+  'nilai-lebih-5.webp',
 ];
 
 let ok = 0, skip = 0, fail = 0;

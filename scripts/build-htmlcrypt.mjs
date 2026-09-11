@@ -66,14 +66,13 @@ function obfuscateStrings(html) {
     .replace(/#([0-9A-Fa-f]{6})\b/g, (m, hex) => '&#35;' + hex.split('').map(c => '&#x' + c.charCodeAt(0).toString(16) + ';').join(''));
 }
 
-/* ── 5. Suntik banner komentar noise (markup saja) ── */
+/* ── 5. Suntik banner komentar noise (markup saja, HANYA di antara tag —
+   titik: setelah <body...> dan sebelum </body>; dijamin tidak membelah tag) ── */
 function injectBanners(html) {
   const banner = `<!-- ${BANNER} -->`;
-  let out = html;
-  const mid = Math.floor(out.length * 0.45);
-  const anchor = out.indexOf('><', mid);
-  if (anchor > -1) out = out.slice(0, anchor + 2) + banner + out.slice(anchor + 2);
-  return banner + '\n' + out;
+  let out = html.replace(/(<body[^>]*>)/i, '$1' + banner);
+  out = out.replace(/<\/body>/i, banner + '</body>');
+  return banner + out;
 }
 
 const PAGES = ['index.html', 'proposal.html', join('admin', 'index.html'), '404.html', 'blocked.html'];
