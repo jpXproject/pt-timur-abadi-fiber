@@ -41,34 +41,18 @@
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
 <link rel="apple-touch-icon" href="assets/icons/logo.png"/>
-<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind self-hosted (build offline 22KB gzip-ready) — tanpa CDN runtime 124KB + tanpa warning "not for production" -->
+<link href="assets/css/tw.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            neuBg: '#F0FDF4',        /* Fresh Mint White — latar utama */
-            neuDark: '#B9E0E8',      /* Cyan Tint Soft Shadow — bayangan neumorphic */
-            ocean: '#0284C7',        /* Bright Cyan — navbar, judul, aksen utama */
-            oceanDark: '#0369A1',
-            turquoise: '#0E9F6E',    /* Splash Teal — ikon, badge, poin eco-friendly */
-            sunset: '#FFC72C',
-            waGreen: '#25D366',
-            navyText: '#0B1B3D',
-            ctaOrange: '#FF5A1F',    /* Neon Orange — tombol konversi utama */
-            ctaOrangeDark: '#E8480F',
-          },
-          fontFamily: {
-            heading: ['"Fredoka"', 'sans-serif'],
-            body: ['"Plus Jakarta Sans"', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+/* Catatan build: config Tailwind kini di tailwind.config.js — rebuild dengan:
+   npx tailwindcss -c tailwind.config.js -i assets/css/tw-src.css -o assets/css/tw.css --minify */
+</script>
 <style>
     body {
       background-color: #F0FDF4;
@@ -349,11 +333,11 @@
 </div>
 <div class="flex items-center gap-4">
 <a class="hover:text-ocean transition flex items-center gap-1" href="https://wa.me/6281238242926?text=Halo,%20Saya%20tertarik%20dengan%20produk%20Anda" rel="noopener noreferrer" target="_blank">
-<span class="font-semibold text-ocean">+62 812-3824-2926</span>
+<span class="font-semibold text-oceanDark">+62 812-3824-2926</span>
 </a>
 <span class="text-sky-300">•</span>
 <a class="hover:text-ocean transition flex items-center gap-1" href="https://wa.me/6281357130170?text=Halo,%20Saya%20tertarik%20dengan%20produk%20Anda" rel="noopener noreferrer" target="_blank">
-<span class="font-semibold text-turquoise">+62 813-5713-0170</span>
+<span class="font-semibold text-emerald-700">+62 813-5713-0170</span>
 </a>
 <span class="hidden sm:inline text-sky-300">•</span>
 <a class="hidden sm:inline-flex items-center gap-1 hover:text-ocean" href="mailto:admin@timurabadi.com">
@@ -370,8 +354,8 @@
 <img src="assets/icons/logo.png" alt="Logo resmi PT. Timur Abadi Fiber" class="w-10 h-10 object-contain" width="40" height="40"/>
 </div>
 <div>
-<span class="font-fredoka text-base sm:text-2xl text-ocean font-bold tracking-wide block leading-none">TIMUR ABADI FIBER</span>
-<span class="hidden sm:text-xs text-[9px] text-slate-500 font-semibold uppercase tracking-wider">Waterpark General Contractor &amp; FRP Manufacturer</span>
+<span class="font-fredoka text-base sm:text-2xl text-oceanDark font-bold tracking-wide block leading-none">TIMUR ABADI FIBER</span>
+<span class="hidden sm:block text-[10px] text-slate-600 font-semibold uppercase tracking-wider">Waterpark General Contractor &amp; FRP Manufacturer</span>
 </div>
 </a>
 <nav class="hidden md:flex items-center gap-2 font-semibold text-sm text-navyText uppercase tracking-wider">
@@ -387,19 +371,20 @@
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
 </a>
 <!-- Mobile CTA ringkas (ganti menu hamburger — 1 tujuan utama: booking) -->
-<a aria-label="Konsultasi Proyek" class="neu-btn-cta md:hidden px-4 py-2.5 text-white font-bold text-xs tracking-wider flex items-center gap-1.5" href="#booking">
+<a class="neu-btn-cta md:hidden px-4 py-2.5 text-white font-bold text-xs tracking-wider flex items-center gap-1.5" href="#booking">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 BOOKING
 </a>
 </div>
 </header>
+<main class="relative">
 <!-- HERO SECTION -->
 <section class="max-w-7xl mx-auto px-3 sm:px-8 py-6 sm:py-14" id="tentang">
 <div class="neu-flat p-4 sm:p-8 lg:p-14 relative overflow-hidden">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 <!-- Left: Text -->
 <div class="lg:col-span-7 space-y-6">
-<div class="inline-flex items-center gap-2 neu-pressed px-4 py-2 rounded-full text-xs font-bold text-ocean">
+<div class="inline-flex items-center gap-2 neu-pressed px-4 py-2 rounded-full text-xs font-bold text-oceanDark">
 <span class="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse"></span>
             <span data-live="hero_badge">BERPENGALAMAN 25+ TAHUN • SEJAK 2017 GENERAL CONTRACTOR WATERPARK</span>
           </div>
@@ -424,55 +409,41 @@ BOOKING
 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-sky-200/60">
 <div class="neu-flat-sm p-4 text-center">
 <span class="font-fredoka text-xl sm:text-3xl text-ocean font-bold block">25+ Thn</span>
-<span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Pengalaman Industri</span>
+<span class="text-[11px] sm:text-xs text-slate-600 font-semibold">Pengalaman Industri</span>
 </div>
 <div class="neu-flat-sm p-4 text-center">
 <span class="font-fredoka text-xl sm:text-3xl text-turquoise font-bold block">23</span>
-<span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Tenaga Ahli Profesional</span>
+<span class="text-[11px] sm:text-xs text-slate-600 font-semibold">Tenaga Ahli Profesional</span>
 </div>
 <div class="neu-flat-sm p-4 text-center">
-<span class="font-fredoka text-xl sm:text-3xl text-sunset font-bold block">21+</span>
-<span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Klien Skala Nasional</span>
+<span class="font-fredoka text-xl sm:text-3xl text-amber-600 font-bold block">21+</span>
+<span class="text-[11px] sm:text-xs text-slate-600 font-semibold">Klien Skala Nasional</span>
 </div>
 <div class="neu-flat-sm p-4 text-center">
 <span class="font-fredoka text-xl sm:text-3xl text-emerald-600 font-bold block">21 / 3</span>
-<span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Completed &amp; Running</span>
+<span class="text-[11px] sm:text-xs text-slate-600 font-semibold">Completed &amp; Running</span>
 </div>
 </div>
 </div>
-<!-- Right: 3D Visual Neumorphic Showcase -->
+<!-- Right: Showcase Card — desain sesuai contoh klien (card.png: water slide + badge brand) -->
 <div class="lg:col-span-5 flex justify-center">
 <div class="w-full max-w-md neu-pressed p-6 rounded-[28px] relative">
-<div class="neu-flat p-6 rounded-2xl space-y-5 bg-[#F0FDF4]">
-<!-- Mockup Graphic: Tropical Water Slide -->
-<div class="h-56 rounded-xl bg-gradient-to-br from-sky-400 via-cyan-500 to-ocean relative flex items-center justify-center overflow-hidden shadow-inner">
-<div class="absolute -bottom-6 -right-6 w-32 h-32 bg-white/20 rounded-full blur-xl"></div>
-<div class="absolute -top-6 -left-6 w-28 h-28 bg-yellow-300/30 rounded-full blur-xl"></div>
-<!-- SVG Iconography for Water Slide & Wave -->
-<div class="text-center text-white px-4 relative z-10">
-<svg class="w-16 h-16 mx-auto text-white drop-shadow-md" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M3 15c2.5 0 3.5-2 6-2s3.5 2 6 2 3.5-2 6-2"></path>
-<path d="M3 19c2.5 0 3.5-2 6-2s3.5 2 6 2 3.5-2 6-2"></path>
-<path d="M4 8l5-5 5 5-5 5-5-5z"></path>
-<path d="M12 3v10"></path>
-</svg>
-<p class="font-fredoka text-lg mt-2 font-bold tracking-wide">WATERPARK BUILDER</p>
-<p class="text-xs text-sky-100 font-medium">Perencanaan • Sipil • Plumbing • Fiber</p>
-</div>
-</div>
+<div class="neu-flat p-4 rounded-2xl space-y-4 bg-[#F0FDF4]">
+<!-- Foto card.png: proyek water slide + badge “TIMUR ABADI FIBER” -->
+<img src="assets/img/card.webp" alt="Kartu proyek wahana seluncur waterpark oleh PT. Timur Abadi Fiber — perencanaan, sipil, plumbing, dan fiber" class="w-full rounded-xl shadow-inner" width="860" height="601" loading="lazy" decoding="async"/>
 <!-- Real Pillars -->
 <div class="space-y-2.5 pt-1">
 <div class="flex items-center justify-between neu-flat-sm p-3 px-4">
 <span class="text-xs font-semibold text-slate-600 flex items-center gap-2">
 <span class="w-2 h-2 rounded-full bg-turquoise"></span> Tenaga Ahli
                   </span>
-<span class="text-xs font-bold text-ocean">23 Teknisi &amp; Desainer Berpengalaman</span>
+<span class="text-xs font-bold text-oceanDark">23 Teknisi &amp; Desainer Berpengalaman</span>
 </div>
 <div class="flex items-center justify-between neu-flat-sm p-3 px-4">
 <span class="text-xs font-semibold text-slate-600 flex items-center gap-2">
 <span class="w-2 h-2 rounded-full bg-turquoise"></span> Kualitas Orientasi
                   </span>
-<span class="text-xs font-bold text-turquoise">FRP Tebal, Anti-UV &amp; Presisi</span>
+<span class="text-xs font-bold text-emerald-700">FRP Tebal, Anti-UV &amp; Presisi</span>
 </div>
 <div class="flex items-center justify-between neu-flat-sm p-3 px-4">
 <span class="text-xs font-semibold text-slate-600 flex items-center gap-2">
@@ -495,7 +466,7 @@ BOOKING
 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
 <div>
-<h3 class="font-fredoka text-lg text-navyText font-bold mb-1">Tenaga Ahli Berpengalaman</h3>
+<h2 class="font-fredoka text-lg text-navyText font-bold mb-1">Tenaga Ahli Berpengalaman</h2>
 <p class="text-xs text-slate-600 leading-relaxed">Proyek waterpark Anda dikerjakan oleh 23 tenaga ahli bersertifikasi di bidang konstruksi sipil, hidrolik &amp; rekayasa fiberglass.</p>
 </div>
 </div>
@@ -504,7 +475,7 @@ BOOKING
 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
 <div>
-<h3 class="font-fredoka text-lg text-navyText font-bold mb-1">Hasil yang Berkualitas</h3>
+<h2 class="font-fredoka text-lg text-navyText font-bold mb-1">Hasil yang Berkualitas</h2>
 <p class="text-xs text-slate-600 leading-relaxed">Orientasi utama kami adalah hasil yang kokoh, berstandar keselamatan tinggi, awet bertahun-tahun serta finishing mulus anti-luka.</p>
 </div>
 </div>
@@ -530,7 +501,7 @@ BOOKING
 <!-- Layanan 1: Konstruksi Waterpark -->
 <div class="layanan-card neu-flat overflow-hidden flex flex-col group hover:-translate-y-1.5 transition duration-300">
 <div class="relative">
-<img src="assets/img/layanan-1-konstruksi.webp" alt="Konstruksi waterpark — pekerjaan sipil kolam dan menara seluncur oleh PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
+<img src="assets/img/layanan-1-konstruksi.webp" srcset="assets/img/layanan-1-konstruksi.webp 800w, assets/img/layanan-1-480.webp 480w" sizes="(max-width: 640px) 90vw, 380px" alt="Konstruksi waterpark — pekerjaan sipil kolam dan menara seluncur oleh PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
 <div class="absolute -bottom-7 left-5 w-14 h-14 neu-pressed rounded-2xl flex items-center justify-center text-ocean bg-[#F0FDF4]">
 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
@@ -555,7 +526,7 @@ BOOKING
 <!-- Layanan 2: Waterpark Design -->
 <div class="layanan-card neu-flat overflow-hidden flex flex-col group hover:-translate-y-1.5 transition duration-300">
 <div class="relative">
-<img src="assets/img/layanan-2-design.webp" alt="Desain waterpark 3D — konsep visual dan engineering oleh PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
+<img src="assets/img/layanan-2-design.webp" srcset="assets/img/layanan-2-design.webp 800w, assets/img/layanan-2-480.webp 480w" sizes="(max-width: 640px) 90vw, 380px" alt="Desain waterpark 3D — konsep visual dan engineering oleh PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
 <div class="absolute -bottom-7 left-5 w-14 h-14 neu-pressed rounded-2xl flex items-center justify-center text-turquoise bg-[#F0FDF4]">
 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
@@ -580,7 +551,7 @@ BOOKING
 <!-- Layanan 3: Renovasi Waterpark -->
 <div class="layanan-card neu-flat overflow-hidden flex flex-col group hover:-translate-y-1.5 transition duration-300">
 <div class="relative">
-<img src="assets/img/layanan-3-renovasi.webp" alt="Renovasi waterpark — revitalisasi wahana lama oleh PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
+<img src="assets/img/layanan-3-renovasi.webp" srcset="assets/img/layanan-3-renovasi.webp 800w, assets/img/layanan-3-480.webp 480w" sizes="(max-width: 640px) 90vw, 380px" alt="Renovasi waterpark — revitalisasi wahana lama oleh PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
 <div class="absolute -bottom-7 left-5 w-14 h-14 neu-pressed rounded-2xl flex items-center justify-center text-amber-500 bg-[#F0FDF4]">
 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
@@ -605,7 +576,7 @@ BOOKING
 <!-- Layanan 4: Playground & Slide Air -->
 <div class="layanan-card neu-flat overflow-hidden flex flex-col group hover:-translate-y-1.5 transition duration-300">
 <div class="relative">
-<img src="assets/img/layanan-4-playground.webp" alt="Playground dan water slide — fabrikasi wahana waterboom PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
+<img src="assets/img/layanan-4-playground.webp" srcset="assets/img/layanan-4-playground.webp 800w, assets/img/layanan-4-480.webp 480w" sizes="(max-width: 640px) 90vw, 380px" srcset="assets/img/layanan-4-playground.webp 800w, assets/img/layanan-4-480.webp 480w" sizes="(max-width: 640px) 90vw, 380px" alt="Playground dan water slide — fabrikasi wahana waterboom PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
 <div class="absolute -bottom-7 left-5 w-14 h-14 neu-pressed rounded-2xl flex items-center justify-center text-ocean bg-[#F0FDF4]">
 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
@@ -630,7 +601,7 @@ BOOKING
 <!-- Layanan 5: Maintenance / Perawatan -->
 <div class="layanan-card neu-flat overflow-hidden flex flex-col group hover:-translate-y-1.5 transition duration-300">
 <div class="relative">
-<img src="assets/img/layanan-5-maintenance.webp" alt="Maintenance dan servis waterpark — inspeksi keselamatan PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
+<img src="assets/img/layanan-5-maintenance.webp" srcset="assets/img/layanan-5-maintenance.webp 800w, assets/img/layanan-5-480.webp 480w" sizes="(max-width: 640px) 90vw, 380px" alt="Maintenance dan servis waterpark — inspeksi keselamatan PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
 <div class="absolute -bottom-7 left-5 w-14 h-14 neu-pressed rounded-2xl flex items-center justify-center text-turquoise bg-[#F0FDF4]">
 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
@@ -655,7 +626,7 @@ BOOKING
 <!-- Layanan 6: Painting / Pengecatan Ulang -->
 <div class="layanan-card neu-flat overflow-hidden flex flex-col group hover:-translate-y-1.5 transition duration-300">
 <div class="relative">
-<img src="assets/img/layanan-6-painting.webp" alt="Painting dan kerajinan fiberglass — gelcoat anti-UV PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
+<img src="assets/img/layanan-6-painting.webp" srcset="assets/img/layanan-6-painting.webp 800w, assets/img/layanan-6-480.webp 480w" sizes="(max-width: 640px) 90vw, 380px" alt="Painting dan kerajinan fiberglass — gelcoat anti-UV PT. Timur Abadi Fiber" class="w-full h-40 sm:h-44 object-cover" loading="lazy" width="900" height="672"/>
 <div class="absolute -bottom-7 left-5 w-14 h-14 neu-pressed rounded-2xl flex items-center justify-center text-amber-500 bg-[#F0FDF4]">
 <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
@@ -694,84 +665,84 @@ BOOKING
 <img src="assets/img/klien/jatim-park.png" alt="Logo Jatim Park 1, 2, 3 Batu — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Jatim Park 1, 2, 3</h4>
-<p class="text-[11px] text-slate-500 font-medium">Batu, Jawa Timur</p>
+<p class="text-[11px] text-slate-600 font-medium">Batu, Jawa Timur</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/hawai.png" alt="Logo Hawai Waterpark Malang — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Hawai Waterpark</h4>
-<p class="text-[11px] text-slate-500 font-medium">Malang, Jawa Timur</p>
+<p class="text-[11px] text-slate-600 font-medium">Malang, Jawa Timur</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/taman-safari.png" alt="Logo Taman Safari Prigen Pasuruan — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Taman Safari Prigen</h4>
-<p class="text-[11px] text-slate-500 font-medium">Pasuruan, Jawa Timur</p>
+<p class="text-[11px] text-slate-600 font-medium">Pasuruan, Jawa Timur</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/jogja-bay.png" alt="Logo Jogja Bay Waterpark Yogyakarta — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Jogja Bay</h4>
-<p class="text-[11px] text-slate-500 font-medium">Yogyakarta</p>
+<p class="text-[11px] text-slate-600 font-medium">Yogyakarta</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-ocean font-bold text-sm">BW</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Banyuwangi Waterpark</h4>
-<p class="text-[11px] text-slate-500 font-medium">Banyuwangi, Jawa Timur</p>
+<p class="text-[11px] text-slate-600 font-medium">Banyuwangi, Jawa Timur</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/sengkaling.png" alt="Logo Sengkaling Waterpark Malang — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Sengkaling Waterpark</h4>
-<p class="text-[11px] text-slate-500 font-medium">Malang, Jawa Timur</p>
+<p class="text-[11px] text-slate-600 font-medium">Malang, Jawa Timur</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-amber-500 font-bold text-sm">SO</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Saigon Waterpark</h4>
-<p class="text-[11px] text-slate-500 font-medium">Pasuruan, Jawa Timur</p>
+<p class="text-[11px] text-slate-600 font-medium">Pasuruan, Jawa Timur</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/selecta.png" alt="Logo Taman Rekreasi Selecta Batu — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Selecta &amp; Agrowisata</h4>
-<p class="text-[11px] text-slate-500 font-medium">Batu, Jawa Timur</p>
+<p class="text-[11px] text-slate-600 font-medium">Batu, Jawa Timur</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-ocean font-bold text-sm">BT</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Batam Top 100</h4>
-<p class="text-[11px] text-slate-500 font-medium">Batam, Kepulauan Riau</p>
+<p class="text-[11px] text-slate-600 font-medium">Batam, Kepulauan Riau</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-turquoise font-bold text-sm">KN</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Kuningan Waterpark</h4>
-<p class="text-[11px] text-slate-500 font-medium">Kuningan, Jawa Barat</p>
+<p class="text-[11px] text-slate-600 font-medium">Kuningan, Jawa Barat</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <div class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-amber-500 font-bold text-sm">AM</div>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Am &amp; Singapur WTP</h4>
-<p class="text-[11px] text-slate-500 font-medium">Medan &amp; Giantar, Sumatera</p>
+<p class="text-[11px] text-slate-600 font-medium">Medan &amp; Giantar, Sumatera</p>
 </div>
 <div class="neu-flat-sm p-3 sm:p-4 text-center hover:scale-105 transition">
 <div class="h-12 sm:h-16 flex items-center justify-center mb-2">
 <img src="assets/img/klien/pangkalpinang.png" alt="Logo Proyek WTP Pangkal Pinang & Tahuna — klien PT. Timur Abadi Fiber" class="max-h-14 max-w-full object-contain" loading="lazy" width="56" height="56"/>
 </div>
 <h4 class="font-fredoka text-sm font-bold text-navyText">Pangkal Pinang &amp; Tahuna</h4>
-<p class="text-[11px] text-slate-500 font-medium">Bangka &amp; Sulawesi Utara</p>
+<p class="text-[11px] text-slate-600 font-medium">Bangka &amp; Sulawesi Utara</p>
 </div>
 </div>
 <!-- Dokumentasi Proyek Real Callout -->
@@ -783,10 +754,10 @@ BOOKING
           </p>
 </div>
 <div class="flex items-center gap-3">
-<div class="neu-flat-sm px-4 py-2 text-xs font-bold text-ocean">
+<div class="neu-flat-sm px-4 py-2 text-xs font-bold text-oceanDark">
             21+ Proyek Selesai
           </div>
-<div class="neu-flat-sm px-4 py-2 text-xs font-bold text-turquoise">
+<div class="neu-flat-sm px-4 py-2 text-xs font-bold text-emerald-700">
             3 Proyek Berjalan
           </div>
 </div>
@@ -922,7 +893,7 @@ BOOKING
 <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.764.847 2.796.847 3.18 0 5.767-2.586 5.768-5.766.001-3.182-2.585-5.833-5.768-5.833zm8.904 5.762c-.015 4.908-4.004 8.896-8.913 8.896-1.562 0-3.045-.407-4.343-1.127l-4.832 1.267 1.291-4.713c-.787-1.341-1.226-2.898-1.226-4.523.015-4.908 4.004-8.896 8.913-8.896 4.91 0 8.91 3.988 8.91 8.896z"></path></svg>
 </div>
 <div>
-<div class="text-[11px] font-semibold text-slate-500">Contact Person 1 (Fast Respon)</div>
+<div class="text-[11px] font-semibold text-slate-600">Contact Person 1 (Fast Respon)</div>
 <div class="text-sm font-bold text-navyText group-hover:text-ocean">+62 812-3824-2926</div>
 </div>
 </a>
@@ -931,7 +902,7 @@ BOOKING
 <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.764.847 2.796.847 3.18 0 5.767-2.586 5.768-5.766.001-3.182-2.585-5.833-5.768-5.833zm8.904 5.762c-.015 4.908-4.004 8.896-8.913 8.896-1.562 0-3.045-.407-4.343-1.127l-4.832 1.267 1.291-4.713c-.787-1.341-1.226-2.898-1.226-4.523.015-4.908 4.004-8.896 8.913-8.896 4.91 0 8.91 3.988 8.91 8.896z"></path></svg>
 </div>
 <div>
-<div class="text-[11px] font-semibold text-slate-500">Contact Person 2 (Konsultasi Teknis)</div>
+<div class="text-[11px] font-semibold text-slate-600">Contact Person 2 (Konsultasi Teknis)</div>
 <div class="text-sm font-bold text-navyText group-hover:text-ocean">+62 813-5713-0170</div>
 </div>
 </a>
@@ -951,8 +922,9 @@ BOOKING
 </div>
 <!-- Jenis Layanan Sesuai Website Resmi -->
 <div class="space-y-2">
+<label class="sr-only" for="inputLayanan">Layanan yang Dibutuhkan</label>
 <label class="block text-xs font-bold text-navyText uppercase tracking-wider">Layanan yang Dibutuhkan</label>
-<select class="neu-input w-full px-5 py-3.5 text-sm text-navyText cursor-pointer" name="layanan">
+<select class="neu-input w-full px-5 py-3.5 text-sm text-navyText cursor-pointer" name="layanan" id="inputLayanan">
 <option value="Konstruksi Waterpark (General Contractor)">Konstruksi Waterpark (General Contractor Lengkap)</option>
 <option value="Waterpark Design 3D &amp; Blueprint">Waterpark Design (3D &amp; Blueprint Perencanaan)</option>
 <option value="Renovasi Waterpark">Renovasi / Tambah Wahana Seluncur</option>
@@ -978,7 +950,7 @@ BOOKING
 <span>Kirim Pengajuan Jadwal Survei</span>
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
 </button>
-<p class="text-xs text-slate-500 mt-3 font-medium">Data dan rencana investasi Anda terjamin kerahasiaannya oleh PT. Timur Abadi Fiber.</p>
+<p class="text-xs text-slate-600 mt-3 font-medium">Data dan rencana investasi Anda terjamin kerahasiaannya oleh PT. Timur Abadi Fiber.</p>
 </div>
 </form>
 <!-- MAP LOKASI REAL — kantor PT. Timur Abadi Fiber (sebelah kanan form) -->
@@ -992,7 +964,7 @@ BOOKING
 <svg class="w-5 h-5 text-ocean" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
 <div>
-<div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Kantor & Workshop</div>
+<div class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Kantor & Workshop</div>
 <address class="text-sm font-semibold text-navyText not-italic leading-snug">Jl. Kimangun Sarkoro 31D No.18, Tulungagung, Jawa Timur</address>
 </div>
 </div>
@@ -1001,7 +973,7 @@ BOOKING
 <svg class="w-5 h-5 text-turquoise" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
 <div>
-<div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Jam Operasional</div>
+<div class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Jam Operasional</div>
 <div class="text-sm font-semibold text-navyText">Senin–Sabtu, 08.00–16.00 WIB</div>
 </div>
 </div>
@@ -1047,6 +1019,7 @@ BOOKING
 </div>
 </section>
 <!-- FOOTER RESMI TIMUR ABADI FIBER -->
+</main>
 <footer class="max-w-7xl mx-auto px-4 sm:px-8 py-10">
 <div class="neu-flat p-8 sm:p-10">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -1057,14 +1030,14 @@ BOOKING
             Kami adalah produsen wahana seluncur dan kerajinan fiber. Sejak tahun 2017 bergerak di bidang General Contractor Waterpark yang meliputi perencanaan, pekerjaan sipil, plumbing, hingga fabrikasi dan pemasangan semua wahana waterpark.
           </p>
 <div class="pt-2">
-<span class="inline-block neu-pressed px-3 py-1.5 rounded-xl text-[11px] font-bold text-ocean">
+<span class="inline-block neu-pressed px-3 py-1.5 rounded-xl text-[11px] font-bold text-oceanDark">
               Berpengalaman 25+ Tahun
             </span>
 </div>
 </div>
 <!-- Kolom 2: Office & Contact Asli -->
 <div class="space-y-3">
-<h5 class="font-fredoka text-sm font-bold text-navyText uppercase tracking-wider">Office Contact</h5>
+<h3 class="font-fredoka text-sm font-bold text-navyText uppercase tracking-wider">Office Contact</h3>
 <ul class="space-y-2.5 text-xs text-slate-600">
 <li class="flex items-start gap-2">
 <svg class="w-4 h-4 text-ocean flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -1086,7 +1059,7 @@ BOOKING
 </div>
 <!-- Kolom 3: Services Areas Asli -->
 <div class="space-y-3">
-<h5 class="font-fredoka text-sm font-bold text-navyText uppercase tracking-wider">Services Areas</h5>
+<h3 class="font-fredoka text-sm font-bold text-navyText uppercase tracking-wider">Services Areas</h3>
 <ul class="space-y-2 text-xs font-semibold text-slate-600">
 <li><a class="hover:text-ocean" href="#layanan">Waterpark General Kontraktor</a></li>
 <li><a class="hover:text-ocean" href="#layanan">Fiber Supplier &amp; Ornamen</a></li>
@@ -1097,19 +1070,19 @@ BOOKING
 </div>
 <!-- Kolom 4: Jam Layanan & Support -->
 <div class="space-y-3">
-<h5 class="font-fredoka text-sm font-bold text-navyText uppercase tracking-wider">Jam Layanan Kantor</h5>
+<h3 class="font-fredoka text-sm font-bold text-navyText uppercase tracking-wider">Jam Layanan Kantor</h3>
 <p class="text-xs text-slate-600 leading-relaxed">
 <strong>Senin - Sabtu:</strong><br/>08:00 - 16:00 WIB
           </p>
-<div class="neu-pressed p-3 rounded-xl text-xs font-bold text-ocean">
+<div class="neu-pressed p-3 rounded-xl text-xs font-bold text-oceanDark">
             24/7 Support Proyek Berjalan
           </div>
-<p class="text-[11px] text-slate-500">
+<p class="text-[11px] text-slate-600">
             Respon cepat untuk pemesanan wahana, konsultasi teknis, dan jadwal peninjauan lapangan.
           </p>
 </div>
 </div>
-<div class="mt-8 pt-6 border-t border-sky-200/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
+<div class="mt-8 pt-6 border-t border-sky-200/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600 font-medium">
 <div class="flex items-center gap-2" id="socialLinks"></div>
 <p>© Timur Abadi Fiber. All Rights Reserved.</p>
 <p class="mt-2 sm:mt-0">©2026 <a class="text-ocean font-bold hover:underline" href="https://jpxcode.pages.dev" rel="noopener" target="_blank">jpXCode</a>. All rights reserved</p>
