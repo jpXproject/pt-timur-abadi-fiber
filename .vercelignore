@@ -1,0 +1,15 @@
+# Sumber plaintext JS — HANYA file hasil obfuscation di assets/js/ yang ter-deploy
+assets/js/src/
+# Build & dependency
+node_modules/
+scripts/
+# Secrets & internal
+.env
+.admin-credentials.txt
+.vercel
+todo-keamanan-admin.md
+# Database schema (struktur DB tidak boleh publik)
+supabase/
+# QA artifacts
+qa-*.png
+qa-*.mjs

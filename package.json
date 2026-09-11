@@ -4,7 +4,10 @@
   "description": "This repository contains a **stand‑alone, deploy‑ready** static website for **PT. Timur Abadi Fiber**. The page showcases: - Company profile and service catalog - Neumorphic 3D UI style (soft UI) with Tailwind‑CSS utility classes - Fully responsive layout (mobile‑first) - Interactive contact & booking form - Floating WhatsApp button for instant chat",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:secure": "node scripts/build-secure.mjs",
+    "build:plain": "node scripts/build-plain.mjs",
+    "build": "node scripts/build-secure.mjs"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.11",
+    "javascript-obfuscator": "^5.7.0",
     "jsdom": "^30.0.1",
     "tailwindcss": "^3.4.17"
   }

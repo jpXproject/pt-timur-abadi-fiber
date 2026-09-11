@@ -2,14 +2,29 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/assets/js/src/:path*", "destination": "/blocked", "permanent": false },
+    { "source": "/supabase/:path*", "destination": "/blocked", "permanent": false },
+    { "source": "/scripts/:path*", "destination": "/blocked", "permanent": false },
+    { "source": "/todo-keamanan-admin.md", "destination": "/blocked", "permanent": false },
+    { "source": "/README.md", "destination": "/blocked", "permanent": false },
+    { "source": "/tailwind.config.js", "destination": "/blocked", "permanent": false },
+    { "source": "/figma-tokens.json", "destination": "/blocked", "permanent": false },
+    { "source": "/package.json", "destination": "/blocked", "permanent": false },
+    { "source": "/package-lock.json", "destination": "/blocked", "permanent": false },
+    { "source": "/.env", "destination": "/blocked", "permanent": false },
+    { "source": "/.admin-credentials.txt", "destination": "/blocked", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "X-DNS-Prefetch-Control", "value": "on" }
       ]
     },
     {

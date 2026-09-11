@@ -35,6 +35,11 @@ Dokumen ini berisi panduan instruksi teknis untuk AI Agent/Developer dalam mener
     - `controlFlowFlattening: true` (mengacak alur logika eksekusi kode).
     - `deadCodeInjection: true` (menyisipkan kode palsu untuk mengecoh analisis manual).
     - `stringArrayEncoding: ['rc4']` atau `['base64']` (menyembunyikan string sensitif/URL API).
+  - **TERPASANG (2026-09-11):** `scripts/build-secure.mjs` — 9 file JS diobfuscate
+    (guard, site-live, chat-widget, schema-seo, ga4-loader, ui-main, booking, admin, supabase-config)
+    dengan `selfDefending` + `domainLock` (vercel.app + timurabadi-fiber.com) — script mati total
+    jika di-copy ke domain lain. Sumber plaintext hanya di `assets/js/src/` (di-.vercelignore).
+  - Build ulang: `npm run build:secure` (atau `TAF_QA=1 npm run build:secure` untuk QA lokal).
 
 ---
 

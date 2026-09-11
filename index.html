@@ -32,6 +32,8 @@
 <meta name="ICBM" content="-8.0658, 111.9"/>
 <meta name="theme-color" content="#0284C7"/>
 <!-- CHAT LIVE SELF-HOSTED (pengganti Crisp yang di-suspend) — bubble kanan bawah, pesan masuk ke Admin Panel → tab Chat -->
+<!-- SECURITY GUARD — aktif sebelum render: anti klik-kanan/F12/copy/drag + deteksi DevTools realtime -->
+<script src="assets/js/guard.js"></script>
 <!-- GA4 — isi GA4_MEASUREMENT_ID (format G-XXXXXXXXXX) lalu otomatis aktif; kosong = no-op tanpa request -->
 <script>window.GA4_MEASUREMENT_ID="";</script>
 <script async src="assets/js/ga4-loader.js"></script>
@@ -1092,68 +1094,7 @@ BOOKING
 <button id="backTop" aria-label="Kembali ke atas" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed z-40 w-11 h-11 rounded-full flex items-center justify-center text-ocean neu-btn-raised">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
 </button>
-<script>
-(function () {
-  var b = document.getElementById('backTop');
-  if (!b) return;
-  addEventListener('scroll', function () {
-    b.classList.toggle('tampil', scrollY > 400);
-  }, { passive: true });
-})();
 
-/* ═══ SCROLL-SPY NAVBAR — menu menyala mengikuti section yang sedang dilihat ═══ */
-(function () {
-  var links = document.querySelectorAll('header nav a.nav-pill[href^="#"]');
-  if (!links.length) return;
-  var secs = [];
-  links.forEach(function (a) {
-    var el = document.getElementById(a.getAttribute('href').slice(1));
-    if (el) secs.push({ a: a, el: el });
-  });
-  if (!secs.length) return;
-  secs.sort(function (x, y) { return x.el.offsetTop - y.el.offsetTop; });
-  var aktif = null;
-  var update = function () {
-    var y = scrollY + 140; /* kompensasi header sticky */
-    var cur = secs[0];
-    for (var i = 0; i < secs.length; i++) {
-      if (secs[i].el.offsetTop <= y) cur = secs[i];
-    }
-    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 60) cur = secs[secs.length - 1];
-    if (cur === aktif) return;
-    aktif = cur;
-    links.forEach(function (a) { a.classList.remove('aktif'); });
-    cur.a.classList.add('aktif');
-  };
-  addEventListener('scroll', update, { passive: true });
-  addEventListener('resize', update, { passive: true });
-  update();
-})();
-</script>
-<!-- BOOKING FORM → WHATSAPP -->
-<script>
-/* ═══════════════════════════════════════════════════════════
-   BOOKING FORM → WHATSAPP (tanpa backend — 100% static hosting)
-   Data formulir dirangkai jadi pesan WA rapi ke nomor resmi.
-   ═══════════════════════════════════════════════════════════ */
-function kirimBookingWhatsApp(event) {
-  event.preventDefault();
-  var f = event.target;
-  var ambil = function (name) { return (f.querySelector('[name=' + JSON.stringify(name) + ']') || {}).value || ''; };
-  var pesan = [
-    'Halo *CV. Timur Abadi Fiber*, saya ingin konsultasi proyek:',
-    '',
-    '• Nama: ' + ambil('nama'),
-    '• WhatsApp: ' + ambil('whatsapp'),
-    '• Layanan: ' + ambil('layanan'),
-    '• Lahan/Budget: ' + (ambil('lahan') || '-'),
-    '• Lokasi/Catatan: ' + (ambil('catatan') || '-')
-  ].join('\n');
-  window.open('https://wa.me/6281238242926?text=' + encodeURIComponent(pesan), '_blank', 'noopener');
-  if (typeof window.trackBookingSubmit === 'function') window.trackBookingSubmit(ambil('layanan'));
-  return false;
-}
-</script>
 <!-- SEO Grade A: JSON-LD Organization + LocalBusiness + Service + FAQ (rich results Google) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/supabase-config.js"></script>
@@ -1161,4 +1102,6 @@ function kirimBookingWhatsApp(event) {
 <!-- CHAT LIVE — realtime visitor ↔ admin via Supabase -->
 <script defer src="assets/js/chat-widget.js"></script>
 <script defer src="assets/js/schema-seo.js"></script>
+<script defer src="assets/js/ui-main.js"></script>
+<script defer src="assets/js/booking.js"></script>
 </body></html>
