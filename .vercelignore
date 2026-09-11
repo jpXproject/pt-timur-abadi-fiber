@@ -1,8 +1,9 @@
-# Sumber plaintext JS — HANYA file hasil obfuscation di assets/js/ yang ter-deploy
-assets/js/src/
+# Catatan: scripts/ & assets/js/src/ TIDAK di-ignore karena dibutuhkan
+# saat "npm run build" di Vercel (obfuscation build-time).
+# Akses publik ke path tsupun DIBLOKIR via redirects di vercel.json -> /blocked.
+
 # Build & dependency
 node_modules/
-scripts/
 # Secrets & internal
 .env
 .admin-credentials.txt
