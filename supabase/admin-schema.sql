@@ -84,5 +84,8 @@ insert into "siteContent" (key, value, label, kategori) values
 on conflict (key) do nothing;
 
 insert into "socialLinks" (platform, url, handle, urutan) values
-  ('instagram', 'https://instagram.com/timurabadifiber', '@timurabadifiber', 1)
+  ('instagram', 'https://instagram.com/timurabadifiber', '@timurabadifiber', 1),
+  ('facebook',  'https://facebook.com/timurabadifiber',  '@timurabadifiber', 2),
+  ('youtube',   'https://youtube.com/@timurabadifiber',  '@timurabadifiber', 3),
+  ('tiktok',    'https://tiktok.com/@timurabadifiber',   '@timurabadifiber', 4)
 on conflict do nothing;

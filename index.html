@@ -24,6 +24,8 @@
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:alt" content="PT. Timur Abadi Fiber — Kontraktor Wahana Waterpark Fiberglass"/>
 <meta name="twitter:image" content="https://pt-timur-abadi-fiber-production.vercel.app/assets/icons/og-image.png"/>
+<!-- Hero image preload + LCP optimization -->
+<link rel="preload" as="image" href="assets/img/hero-waterpark.webp" fetchpriority="high"/>
 <meta name="geo.region" content="ID-JI"/>
 <meta name="geo.placename" content="Tulungagung, Jawa Timur"/>
 <meta name="geo.position" content="-8.0658;111.9"/>
@@ -147,19 +149,7 @@
       transform: translateY(2px);
     }
 
-    .neu-fab-wa {
-      background: #25D366;
-      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.18), -5px -5px 15px #FFFFFF;
-      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .neu-fab-wa:hover {
-      transform: scale(1.08) translateY(-4px);
-      box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25), -8px -8px 20px #FFFFFF;
-    }
-    .neu-fab-wa:active {
-      transform: scale(0.96);
-      box-shadow: inset 3px 3px 6px rgba(0,0,0,0.3);
-    }
+    /* FAB WhatsApp dinonaktifkan — diganti live chat Crisp (script di head) */
 
     .font-fredoka {
       font-family: 'Fredoka', sans-serif;
@@ -241,6 +231,8 @@ BOOKING
 <h1 class="font-fredoka text-3xl sm:text-4xl lg:text-5xl text-navyText leading-tight">
             Wujudkan Wahana <span class="text-ocean">Waterpark Impian</span> Bersama Kontraktor Profesional
           </h1>
+<!-- HERO IMAGE — gerbang proyek real (webp 19KB, preload LCP) -->
+<img src="assets/img/hero-waterpark.webp" alt="Gerbang proyek waterpark buatan PT. Timur Abadi Fiber — pionir kontraktor wahana waterpark fiberglass sejak 1995" class="w-full rounded-2xl shadow-lg mb-6" width="1408" height="768" fetchpriority="high" decoding="async"/>
 <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
             Selamat Datang di <strong class="text-navyText font-semibold">PT. Timur Abadi Fiber</strong>. Berawal dari produsen wahana seluncur &amp; kerajinan fiberglass, seiring perkembangan bisnis dan permintaan klien, sejak tahun 2017 kami berekspansi menjadi <em>General Contractor Waterpark</em> terpadu yang mencakup perencanaan sipil, sistem plumbing hidrolik, hingga fabrikasi dan instalasi seluruh wahana ramah lingkungan.
           </p>
@@ -878,25 +870,7 @@ BOOKING
 </div>
 </div>
 </footer>
-<!-- FLOATING WHATSAPP BUTTON (FAB) - NOMOR AKTIF RESMI -->
-<div class="fixed bottom-6 right-6 z-50 group">
-<a class="neu-fab-wa w-16 h-16 rounded-full flex items-center justify-center text-white relative" href="https://wa.me/6281238242926?text=Halo%20PT.%20Timur%20Abadi%20Fiber,%20saya%20tertarik%20konsultasi%20pembuatan%20wahana%20waterpark" rel="noopener noreferrer" target="_blank" title="Chat WhatsApp Resmi (+62 812-3824-2926)">
-<!-- WhatsApp SVG -->
-<svg class="w-8 h-8 drop-shadow-md" fill="currentColor" viewbox="0 0 24 24">
-<path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.764.847 2.796.847 3.18 0 5.767-2.586 5.768-5.766.001-3.182-2.585-5.833-5.768-5.833zm8.904 5.762c-.015 4.908-4.004 8.896-8.913 8.896-1.562 0-3.045-.407-4.343-1.127l-4.832 1.267 1.291-4.713c-.787-1.341-1.226-2.898-1.226-4.523.015-4.908 4.004-8.896 8.913-8.896 4.91 0 8.91 3.988 8.91 8.896z"></path>
-</svg>
-<!-- Ripple effect ring -->
-<span class="absolute -top-1 -right-1 flex h-4 w-4">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
-<span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-400"></span>
-</span>
-</a>
-<!-- Floating tooltip badge -->
-<div class="absolute right-20 bottom-3 hidden md:group-hover:flex items-center whitespace-nowrap bg-navyText text-white text-xs font-semibold py-2 px-3.5 rounded-xl shadow-lg pointer-events-none transition-all">
-      Konsultasi Langsung via WhatsApp (+62 812-3824-2926)
-      <div class="absolute -right-1 w-2 h-2 bg-navyText rotate-45"></div>
-</div>
-</div>
+<!-- LIVE CHAT CRISP (menggantikan FAB WhatsApp — chat realtime + notifikasi email) -->
 <script>
 /* ═══════════════════════════════════════════════════════════
    BOOKING FORM → WHATSAPP (tanpa backend — 100% static hosting)
@@ -923,5 +897,7 @@ function kirimBookingWhatsApp(event) {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/supabase-config.js"></script>
 <script defer src="assets/js/site-live.js"></script>
+<!-- LIVE CHAT CRISP — chat realtime pelanggan ↔ admin (mobile app Crisp tersedia) -->
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="41f39066-e01f-44d0-a056-1d9983855ebc";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 <script defer src="assets/js/schema-seo.js"></script>
 </body></html>

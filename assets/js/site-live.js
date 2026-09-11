@@ -20,9 +20,12 @@
 
   var SB_URL  = window.SUPABASE_URL  || localStorage.getItem('tafSbUrl')  || '';
   var SB_ANON = window.SUPABASE_ANON || localStorage.getItem('tafSbAnon') || '';
-  // Tanpa konfigurasi → langsung tampilkan galeri placeholder, selesai.
+  // Tanpa konfigurasi → galeri placeholder + ikon medsos default, selesai.
   if (!SB_URL || !SB_ANON || typeof supabase === 'undefined') {
-    document.addEventListener('DOMContentLoaded', renderFallbackGallery);
+    document.addEventListener('DOMContentLoaded', function () {
+      renderFallbackGallery();
+      renderMedsos(DEFAULT_SOCIAL);
+    });
     return;
   }
   var sb = supabase.createClient(SB_URL, SB_ANON);
@@ -86,20 +89,37 @@
     twitter:   '<path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/>'
   };
 
+  /* Fallback ikon default kalau DB belum diisi — tampil sejak kunjungan pertama */
+  var DEFAULT_SOCIAL = [
+    { platform: 'instagram', url: 'https://instagram.com/timurabadifiber' },
+    { platform: 'facebook',  url: 'https://facebook.com/timurabadifiber' },
+    { platform: 'youtube',   url: 'https://youtube.com/@timurabadifiber' },
+    { platform: 'tiktok',    url: 'https://tiktok.com/@timurabadifiber' }
+  ];
+
+  function renderMedsos(daftar) {
+    var wrap = document.getElementById('socialLinks');
+    if (!wrap) return [];
+    var valid = daftar.filter(function (m) { return ICONS[m.platform] && /^https?:\/\//.test(m.url); });
+    wrap.innerHTML = valid.map(function (m) {
+      return '<a aria-label="' + esc(m.platform) + ' resmi PT. Timur Abadi Fiber" class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-slate-500 hover:text-ocean transition" href="' + esc(m.url) + '" rel="noopener" target="_blank">' +
+        '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">' + ICONS[m.platform] + '</svg></a>';
+    }).join('');
+    return valid;
+  }
+
   async function muatMedsos() {
     var wrap = document.getElementById('socialLinks');
     if (!wrap) return;
+    // Default langsung tampil (4 ikon) — lalu diganti data DB saat siap
+    var def = renderMedsos(DEFAULT_SOCIAL);
+    if (def.length) perkayaSchema(def.map(function (m) { return m.url; }));
     try {
       var res = await sb.from('socialLinks').select('platform,url,handle').eq('aktif', true).order('urutan').limit(8);
-      if (res.error || !res.data || res.data.length === 0) return;
-      var valid = res.data.filter(function (m) { return ICONS[m.platform] && /^https?:\/\//.test(m.url); });
-      var html = valid.map(function (m) {
-        return '<a aria-label="' + esc(m.platform) + ' resmi PT. Timur Abadi Fiber" class="w-10 h-10 neu-pressed rounded-xl flex items-center justify-center text-slate-500 hover:text-ocean transition" href="' + esc(m.url) + '" rel="noopener" target="_blank">' +
-          '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">' + ICONS[m.platform] + '</svg></a>';
-      }).join('');
-      if (html) wrap.innerHTML = html;
+      if (res.error || !res.data || res.data.length === 0) return; // default tetap
+      var valid = renderMedsos(res.data);
       if (valid.length) perkayaSchema(valid.map(function (m) { return m.url; }));
-    } catch (e) { /* diam: footer tampil tanpa medsos */ }
+    } catch (e) { /* diam: default tetap tampil */ }
   }
 
   /* SEO: setarakan medsos resmi ke schema Organization.sameAs (entity signal) */
