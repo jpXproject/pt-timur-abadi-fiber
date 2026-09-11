@@ -1,0 +1,56 @@
+# TODO Checklist: Implementasi Proteksi & Keamanan Admin Panel
+# jpXCode | jpxcode.pages.dev
+Dokumen ini berisi panduan instruksi teknis untuk AI Agent/Developer dalam menerapkan lapisan keamanan perimeter (anti-copy/anti-inspect) dan keamanan inti (core security) pada halaman Admin Panel.
+
+---
+
+## 🛠️ Tahap 1: Proteksi Antarmuka (Front-End Perimeter)
+*Tujuan: Menyulitkan pengguna awam melakukan inspeksi kode atau menyalin aset.*
+
+- [x] **Implementasi Script Anti-Klik Kanan (Context Menu)**
+  - Menghentikan event `contextmenu` di seluruh dokumen dengan `e.preventDefault()`.
+- [x] **Implementasi Blokir Shortcut Developer Tools**
+  - Menangkap event `keydown` untuk memblokir tombol berikut:
+    - `F12` (Membuka DevTools).
+    - `Ctrl + Shift + I` atau `Cmd + Option + I` (Inspect Element).
+    - `Ctrl + Shift + J` atau `Cmd + Option + J` (Buka Konsol).
+    - `Ctrl + Shift + C` atau `Cmd + Option + C` (Pilih Elemen).
+    - `Ctrl + U` atau `Cmd + Option + U` (View Source Code).
+- [x] **Implementasi DevTools Detection Loop (Debugger Trap)**
+  - Menambahkan interval `setInterval` menggunakan pernyataan `debugger` untuk mendeteksi jeda eksekusi script.
+  - Mengarahkan ulang (*redirect*) halaman ke `about:blank` jika terdeteksi adanya keterlambatan eksekusi akibat DevTools terbuka.
+- [x] **Penerapan Tailwind Utility Anti-Select**
+  - Menambahkan kelas CSS Tailwind `select-none` pada elemen penampung utama (`<body>` atau `<div>` root) agar teks tidak dapat diblok/disalin.
+  - Memanfaatkan utilitas `selection:bg-transparent` untuk menyembunyikan visual highlight saat teks dicoba untuk dipilih.
+
+---
+
+## 🔒 Tahap 2: Pengacakan Kode & Aset (Code Obfuscation)
+*Tujuan: Memastikan kode JavaScript yang terunduh di browser tidak dapat dibaca secara langsung oleh manusia.*
+
+- [x] **Integrasi JavaScript Obfuscator**
+  - Mengonfigurasi modul `javascript-obfuscator` pada alur build (Webpack, Vite, atau script otomatis).
+  - Mengaktifkan fitur:
+    - `compact: true` (menghapus spasi dan baris baru).
+    - `controlFlowFlattening: true` (mengacak alur logika eksekusi kode).
+    - `deadCodeInjection: true` (menyisipkan kode palsu untuk mengecoh analisis manual).
+    - `stringArrayEncoding: ['rc4']` atau `['base64']` (menyembunyikan string sensitif/URL API).
+
+---
+
+## 🛡️ Tahap 3: Keamanan Inti Sisi Server (Back-End Core Security)
+*PENTING: Jangan mengandalkan proteksi front-end untuk menyembunyikan data sensitif.*
+
+- [x] **Validasi Autentikasi Sesi (Server-Side Session Validation)**
+  - Memastikan server menolak pengiriman file HTML Admin Panel jika request tidak menyertakan cookie sesi (*Session Cookie*) atau token JWT yang valid.
+  - Mengembalikan status HTTP `401 Unauthorized` atau `403 Forbidden` alih-alih merender halaman bagi pengguna anonim.
+- [x] **Penerapan Header Security (Content Security Policy - CSP)**
+  - Mengonfigurasi server untuk mengirimkan header `Content-Security-Policy` yang ketat.
+  - Membatasi eksekusi inline script yang tidak terotorisasi demi mencegah eksploitasi celah Cross-Site Scripting (XSS).
+- [x] **Implementasi IP Whitelisting (Opsional / Kondisional)**
+  - Membatasi akses ke endpoint direktori `/admin` hanya untuk alamat IP statis yang telah didaftarkan (IP kantor atau VPN internal).
+
+---
+
+## 📌 Catatan Penting untuk Agent
+> **Prinsip Dasar:** Semua taktik penyembunyian kode di sisi klien (*Front-End*) hanya berfungsi sebagai lapisan pencegah awal (*deterrent*). Validasi hak akses, perlindungan database, dan otorisasi mutlak harus tetap dikelola dengan ketat di sisi server (*Back-End*).
