@@ -7,6 +7,11 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/assets/img/card.png", "destination": "/blocked", "permanent": false },
+    { "source": "/assets/img/.wm-cache/:path*", "destination": "/blocked", "permanent": false },
+    { "source": "/assets/img/hero-waterpark.jpg", "destination": "/blocked", "permanent": false },
+    { "source": "/assets/css/tw-src.css", "destination": "/blocked", "permanent": false },
+    { "source": "/assets/css/style.css", "destination": "/blocked", "permanent": false },
     { "source": "/assets/js/src/:path*", "destination": "/blocked", "permanent": false },
     { "source": "/supabase/:path*", "destination": "/blocked", "permanent": false },
     { "source": "/scripts/:path*", "destination": "/blocked", "permanent": false },

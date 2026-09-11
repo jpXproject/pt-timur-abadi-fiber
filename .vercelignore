@@ -4,6 +4,8 @@
 
 # Build & dependency
 node_modules/
+# Watermark build cache
+assets/img/.wm-cache/
 # Secrets & internal
 .env
 .admin-credentials.txt

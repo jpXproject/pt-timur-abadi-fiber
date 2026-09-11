@@ -41,6 +41,26 @@ Dokumen ini berisi panduan instruksi teknis untuk AI Agent/Developer dalam mener
     jika di-copy ke domain lain. Sumber plaintext hanya di `assets/js/src/` (di-.vercelignore).
   - Build ulang: `npm run build:secure` (atau `TAF_QA=1 npm run build:secure` untuk QA lokal).
 
+- [x] **HTML/CSS Crypt (TAHAP 2 — 2026-09-12)**
+  - `scripts/build-htmlcrypt.mjs`: seluruh halaman (index, proposal, admin, 404,
+    blocked) di-strip komentar dev, di-minify satu baris, email & hex warna
+    diobfuscate, banner anti-clone disuntik. `assets/css/tw.css` di-minify ulang.
+  - SEO aman: title, meta description/og/canonical, heading, alt, konten teks
+    TIDAK diubah (QA: title+canonical+description lolos).
+  - Build ulang: `npm run build:htmlcrypt`.
+
+- [x] **Watermark Gambar + Img Shield (TAHAP 2 — 2026-09-12)**
+  - `scripts/build-watermark.mjs` (sharp): 22 foto proyek di-bake watermark
+    ganda — teks diagonal "CV. TIMUR ABADI FIBER" + dither 1-bit frekuensi
+    tinggi yang muncul saat foto di-reencode/screenshot/adjust-level.
+  - `assets/js/src/img-shield.js` (obfuscated): 13 foto di index dirender via
+    canvas + overlay watermark kedua saat runtime — "Save As" hanya menghasilkan
+    file ber-watermark; drag & contextmenu diblokir; logo klien pihak ketiga
+    di-exempt. Lazy-load ditangani via IntersectionObserver.
+  - Master asli (card.png, hero-waterpark.jpg, tw-src.css, style.css) diblokir
+    dari akses publik via vercel.json → /blocked.
+  - Build ulang: `npm run build:watermark`.
+
 ---
 
 ## 🛡️ Tahap 3: Keamanan Inti Sisi Server (Back-End Core Security)

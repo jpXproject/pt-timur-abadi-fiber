@@ -33,6 +33,7 @@ const FILES = [
   'ui-main.js',
   'booking.js',
   'guard.js',
+  'img-shield.js',
   'admin.js',
 ];
 

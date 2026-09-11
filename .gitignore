@@ -15,3 +15,6 @@ qa-*.png
 node_modules/
 .admin-credentials.txt
 assets/js/src/
+
+# Watermark build cache
+assets/img/.wm-cache/
