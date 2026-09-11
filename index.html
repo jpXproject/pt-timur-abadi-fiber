@@ -188,6 +188,57 @@
       .neu-btn-primary::after, .neu-btn-raised::after { transition: none; }
     }
 
+    /* ═══ NAVBAR PILLS — hybrid neu-glass: kaca buram dalam bayangan neumorphic ═══ */
+    .nav-pill {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: 6px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.42);          /* kaca */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.65);    /* rim light kaca */
+      box-shadow: 3px 3px 8px rgba(23, 72, 115, 0.10), -3px -3px 8px rgba(255, 255, 255, 0.9);
+      transition: color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .nav-pill:hover {
+      color: #0284C7;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: inset 2px 2px 5px rgba(23, 72, 115, 0.12), inset -2px -2px 5px #FFFFFF;
+    }
+    .nav-pill:focus-visible {
+      outline: 2px solid #0284C7;
+      outline-offset: 2px;
+    }
+    /* kilau shiny menyapu saat hover — senada efek air CTA */
+    .nav-pill::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(105deg,
+        transparent 32%,
+        rgba(255, 255, 255, 0.45) 44%,
+        rgba(125, 211, 252, 0.40) 50%,
+        rgba(255, 255, 255, 0.45) 56%,
+        transparent 68%);
+      transform: translateX(-130%) skewX(-8deg);
+      transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+    }
+    .nav-pill:hover::after { transform: translateX(130%) skewX(-8deg); }
+    /* scroll-spy: section yang sedang dilihat → pressed + cyan */
+    .nav-pill.aktif {
+      color: #0284C7;
+      background: rgba(240, 253, 244, 0.92);
+      box-shadow: inset 3px 3px 6px rgba(23, 72, 115, 0.15), inset -3px -3px 6px #FFFFFF, 0 0 0 1px rgba(2, 132, 199, 0.18);
+    }
+    .nav-pill.aktif::after { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .nav-pill::after { transition: none; }
+    }
+
     /* FAB WhatsApp dinonaktifkan — diganti live chat Crisp (script di head) */
 
     .font-fredoka {
@@ -324,13 +375,13 @@
 <span class="hidden sm:text-xs text-[9px] text-slate-500 font-semibold uppercase tracking-wider">Waterpark General Contractor &amp; FRP Manufacturer</span>
 </div>
 </a>
-<nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-navyText uppercase tracking-wider">
-<a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#tentang">Tentang</a>
-<a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#layanan">Layanan</a>
-<a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#klien">Klien Resmi</a>
-<a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#keunggulan">Keunggulan</a>
-<a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#alur-kerja">Alur Kerja</a>
-<a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#faq">FAQ</a>
+<nav class="hidden md:flex items-center gap-2 font-semibold text-sm text-navyText uppercase tracking-wider">
+<a class="nav-pill" href="#tentang">Tentang</a>
+<a class="nav-pill" href="#layanan">Layanan</a>
+<a class="nav-pill" href="#klien">Klien Resmi</a>
+<a class="nav-pill" href="#keunggulan">Keunggulan</a>
+<a class="nav-pill" href="#alur-kerja">Alur Kerja</a>
+<a class="nav-pill" href="#faq">FAQ</a>
 </nav>
 <a class="neu-btn-cta px-5 py-2.5 text-white font-bold text-xs sm:text-sm tracking-wider hidden md:flex items-center gap-2" href="#booking">
 <span>KONSULTASI PROYEK</span>
@@ -1088,6 +1139,35 @@ BOOKING
     window.$crisp.on('chat:closed', dodge);
   } catch (e) {}
   setInterval(dodge, 1200);
+})();
+
+/* ═══ SCROLL-SPY NAVBAR — menu menyala mengikuti section yang sedang dilihat ═══ */
+(function () {
+  var links = document.querySelectorAll('header nav a.nav-pill[href^="#"]');
+  if (!links.length) return;
+  var secs = [];
+  links.forEach(function (a) {
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) secs.push({ a: a, el: el });
+  });
+  if (!secs.length) return;
+  secs.sort(function (x, y) { return x.el.offsetTop - y.el.offsetTop; });
+  var aktif = null;
+  var update = function () {
+    var y = scrollY + 140; /* kompensasi header sticky */
+    var cur = secs[0];
+    for (var i = 0; i < secs.length; i++) {
+      if (secs[i].el.offsetTop <= y) cur = secs[i];
+    }
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 60) cur = secs[secs.length - 1];
+    if (cur === aktif) return;
+    aktif = cur;
+    links.forEach(function (a) { a.classList.remove('aktif'); });
+    cur.a.classList.add('aktif');
+  };
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update, { passive: true });
+  update();
 })();
 </script>
 <!-- LIVE CHAT CRISP (menggantikan FAB WhatsApp — chat realtime + notifikasi email) -->
