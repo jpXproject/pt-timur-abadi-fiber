@@ -149,6 +149,45 @@
       transform: translateY(2px);
     }
 
+    /* ═══ WATER EFFECT — tombol neumorphic 3D dengan kilau gelombang air ═══ */
+    .neu-btn-primary, .neu-btn-raised, .neu-btn-cta {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .neu-btn-primary::after, .neu-btn-raised::after, .neu-btn-cta::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(105deg,
+        transparent 32%,
+        rgba(255, 255, 255, 0.40) 44%,
+        rgba(125, 211, 252, 0.35) 50%,
+        rgba(255, 255, 255, 0.40) 56%,
+        transparent 68%);
+      transform: translateX(-130%) skewX(-8deg);
+      transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+    }
+    .neu-btn-primary:hover::after, .neu-btn-raised:hover::after {
+      transform: translateX(130%) skewX(-8deg);
+    }
+    /* CTA: gelombang air mengalir pelan terus-menerus — seperti air kolam */
+    .neu-btn-cta::after {
+      transition: none;
+      animation: waterSweep 4.5s cubic-bezier(0.4, 0.1, 0.3, 1) infinite;
+    }
+    @keyframes waterSweep {
+      0%   { transform: translateX(-130%) skewX(-8deg); }
+      55%  { transform: translateX(130%) skewX(-8deg); }
+      100% { transform: translateX(130%) skewX(-8deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .neu-btn-cta::after { animation: none; }
+      .neu-btn-primary::after, .neu-btn-raised::after { transition: none; }
+    }
+
     /* FAB WhatsApp dinonaktifkan — diganti live chat Crisp (script di head) */
 
     .font-fredoka {
@@ -183,15 +222,48 @@
       justify-content: center;
     }
 
-    /* Tombol back-to-top */
+    /* ═══ KARTU TAHAPAN — foto header + badge nomor neumorphic ═══ */
+    .tahap-card { overflow: hidden; }
+    .tahap-card img { transition: transform 0.5s ease; }
+    .tahap-card:hover img { transform: scale(1.06); }
+    .tahap-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: #F0FDF4;
+      box-shadow: 4px 4px 8px rgba(23, 72, 115, 0.18), -3px -3px 7px #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #0E9F6E;
+    }
+
+    /* Tombol back-to-top — melayang mengikuti scroll, otomatis menghindar
+       dari widget Crisp (pindah ke kiri saat chat Crisp terbuka) */
     #backTop {
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      bottom: 5.5rem;
+      right: 1.25rem;
+      left: auto;
+      transition: opacity 0.3s ease, right 0.3s ease, left 0.3s ease, transform 0.3s ease;
     }
     #backTop.tampil {
       opacity: 1;
       pointer-events: auto;
+    }
+    #backTop.hindari-crisp {
+      right: auto;
+      left: 1.25rem;
+    }
+    #backTop.tampil:hover {
+      transform: translateY(-2px);
     }
 
     /* ═══ MOBILE COMPACT — auto penyesuaian layar kecil ═══ */
@@ -205,8 +277,8 @@
       .grid.grid-cols-2 { gap: 0.625rem; }
       /* tabel proposal & alur tetap lega via overflow */
       table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      /* CTA stack penuh */
-      .neu-btn-cta, .neu-btn-raised { width: 100%; justify-content: center; }
+      /* CTA stack penuh (hanya anchor — tombol fixed seperti back-to-top tidak ikut) */
+      .neu-btn-cta, a.neu-btn-raised { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -252,7 +324,7 @@
 <span class="hidden sm:text-xs text-[9px] text-slate-500 font-semibold uppercase tracking-wider">Waterpark General Contractor &amp; FRP Manufacturer</span>
 </div>
 </a>
-<nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-navyText">
+<nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-navyText uppercase tracking-wider">
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#tentang">Tentang</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#layanan">Layanan</a>
 <a class="px-2 py-1 rounded-xl transition hover:text-ocean" href="#klien">Klien Resmi</a>
@@ -725,36 +797,61 @@ BOOKING
 <h2 class="font-fredoka text-[22px] leading-tight sm:text-3xl lg:text-4xl text-navyText">Alur Proses Kerja Kami</h2>
 <p class="text-slate-600 text-sm mt-2">Dari konsep visual, perencanaan sipil plumbing, hingga wahana siap dioperasikan menyambut ribuan wisatawan.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-5 gap-6">
-<!-- Step 1 -->
-<div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">1</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-6">
+<!-- Step 1 — Konsultasi & Survei (foto real) -->
+<div class="tahap-card neu-flat flex flex-col">
+<div class="relative">
+<img src="assets/img/tahap-1-konsultasi.webp" alt="Konsultasi &amp; survei lokasi — tahap awal konstruksi waterpark PT. Timur Abadi Fiber" class="w-full h-32 sm:h-36 object-cover" width="800" height="597" loading="lazy" decoding="async"/>
+<span class="tahap-badge">1</span>
+</div>
+<div class="p-4 text-center flex flex-col flex-1">
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Konsultasi &amp; Survei</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Diskusi kontur lahan, target kapasitas pengunjung, dan estimasi rencana anggaran.</p>
 </div>
-<!-- Step 2 -->
-<div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">2</div>
+</div>
+<!-- Step 2 — Desain 3D & RAB (foto real) -->
+<div class="tahap-card neu-flat flex flex-col">
+<div class="relative">
+<img src="assets/img/tahap-2-desain.webp" alt="Desain 3D &amp; RAB waterpark — blueprint visual wahana seluncur fiberglass" class="w-full h-32 sm:h-36 object-cover" width="800" height="597" loading="lazy" decoding="async"/>
+<span class="tahap-badge">2</span>
+</div>
+<div class="p-4 text-center flex flex-col flex-1">
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Desain 3D &amp; RAB</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Pembuatan blueprint 3D visual, gambar arsitektur sipil, instalasi plumbing, dan rincian RAB.</p>
 </div>
-<!-- Step 3 -->
-<div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">3</div>
+</div>
+<!-- Step 3 — Fabrikasi Pabrik (foto real) -->
+<div class="tahap-card neu-flat flex flex-col">
+<div class="relative">
+<img src="assets/img/tahap-3-fabrikasi.webp" alt="Fabrikasi wahana fiberglass di pabrik — workshop PT. Timur Abadi Fiber" class="w-full h-32 sm:h-36 object-cover" width="800" height="597" loading="lazy" decoding="async"/>
+<span class="tahap-badge">3</span>
+</div>
+<div class="p-4 text-center flex flex-col flex-1">
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Fabrikasi Pabrik</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Pencetakan komponen fiberglass di workshop dengan quality control ketat bahan resin pilihan.</p>
 </div>
-<!-- Step 4 -->
-<div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">4</div>
+</div>
+<!-- Step 4 — Sipil, Plumbing & Instalasi (foto real) -->
+<div class="tahap-card neu-flat flex flex-col">
+<div class="relative">
+<img src="assets/img/tahap-4-instalasi.webp" alt="Pekerjaan sipil, plumbing &amp; instalasi wahana waterpark oleh tim teknisi" class="w-full h-32 sm:h-36 object-cover" width="800" height="597" loading="lazy" decoding="async"/>
+<span class="tahap-badge">4</span>
+</div>
+<div class="p-4 text-center flex flex-col flex-1">
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Sipil, Plumbing &amp; Instalasi</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Pengiriman ke seluruh Indonesia &amp; perakitan langsung oleh 23 teknisi ahli berpengalaman.</p>
 </div>
-<!-- Step 5 -->
-<div class="neu-flat p-5 text-center flex flex-col items-center">
-<div class="w-12 h-12 neu-pressed rounded-2xl flex items-center justify-center font-fredoka font-bold text-turquoise text-lg mb-4">5</div>
+</div>
+<!-- Step 5 — Uji Kelayakan & Serah Terima (foto real) -->
+<div class="tahap-card neu-flat flex flex-col">
+<div class="relative">
+<img src="assets/img/tahap-5-serah-terima.webp" alt="Uji kelayakan &amp; serah terima waterpark — commissioning dan garansi resmi" class="w-full h-32 sm:h-36 object-cover" width="800" height="597" loading="lazy" decoding="async"/>
+<span class="tahap-badge">5</span>
+</div>
+<div class="p-4 text-center flex flex-col flex-1">
 <h4 class="font-fredoka text-sm font-bold text-navyText mb-1">Uji Kelayakan &amp; Serah Terima</h4>
 <p class="text-xs text-slate-600 leading-relaxed">Commissioning debit pompa air, uji luncur beban keamanan, dan garansi resmi.</p>
+</div>
 </div>
 </div>
 </section>
@@ -970,7 +1067,7 @@ BOOKING
 </div>
 </footer>
 <!-- BACK TO TOP — panah atas, muncul setelah scroll -->
-<button id="backTop" aria-label="Kembali ke atas" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-5 right-5 z-40 w-11 h-11 rounded-full flex items-center justify-center text-ocean neu-btn-raised">
+<button id="backTop" aria-label="Kembali ke atas" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed z-40 w-11 h-11 rounded-full flex items-center justify-center text-ocean neu-btn-raised">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
 </button>
 <script>
@@ -980,6 +1077,17 @@ BOOKING
   addEventListener('scroll', function () {
     b.classList.toggle('tampil', scrollY > 400);
   }, { passive: true });
+  /* Menghindari Crisp: saat chat Crisp terbuka, tombol pindah ke kiri bawah */
+  var dodge = function () {
+    var open = false;
+    try { open = !!(window.$crisp && window.$crisp.is && window.$crisp.is('chat:opened')); } catch (e) {}
+    b.classList.toggle('hindari-crisp', open);
+  };
+  try {
+    window.$crisp.on('chat:opened', dodge);
+    window.$crisp.on('chat:closed', dodge);
+  } catch (e) {}
+  setInterval(dodge, 1200);
 })();
 </script>
 <!-- LIVE CHAT CRISP (menggantikan FAB WhatsApp — chat realtime + notifikasi email) -->
