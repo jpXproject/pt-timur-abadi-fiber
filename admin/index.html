@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="robots" content="noindex, nofollow"/>
-<title>Admin Panel — CV. Abadi Timur Fiber</title>
+<title>Admin Panel — CV. Timur Abadi Fiber</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../assets/js/supabase-config.js"></script>
@@ -29,7 +29,7 @@
       <div class="text-center mb-6">
         <div class="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center text-3xl mb-3" style="box-shadow:inset 4px 4px 8px #B9E0E8,inset -4px -4px 8px #fff">🔐</div>
         <h1 class="fredoka text-xl font-bold text-[#0284C7]">Admin Panel</h1>
-        <p class="text-xs text-slate-500 font-semibold">CV. ABADI TIMUR FIBER</p>
+        <p class="text-xs text-slate-500 font-semibold">CV. TIMUR ABADI FIBER</p>
       </div>
       <div class="space-y-3">
         <input id="email" type="email" placeholder="email@timurabadi.com" class="neu-in w-full px-4 py-3 text-sm"/>
@@ -58,6 +58,7 @@
       <button onclick="tab('konten')"  id="tb-konten"  class="neu-btn px-5 py-2.5 text-xs font-bold">📝 Konten</button>
       <button onclick="tab('galeri')"  id="tb-galeri"  class="neu-btn px-5 py-2.5 text-xs font-bold">📷 Galeri Proyek</button>
       <button onclick="tab('medsos')"  id="tb-medsos"  class="neu-btn px-5 py-2.5 text-xs font-bold">📱 Media Sosial</button>
+      <button onclick="tab('chat')"    id="tb-chat"    class="neu-btn px-5 py-2.5 text-xs font-bold relative">💬 Chat <span id="chatDot" class="hidden absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#FF5A1F]"></span></button>
     </div>
 
     <!-- KONTEN -->
@@ -100,6 +101,22 @@
       <button onclick="tambahMedsos()" class="btn-p px-6 py-3 rounded-xl text-xs font-bold mb-5">+ TAMBAH LINK</button>
       <div id="medsosList" class="space-y-2"></div>
     </div>
+
+    <!-- CHAT -->
+    <div id="tab-chat" class="neu p-6 hidden">
+      <h2 class="fredoka font-bold mb-1">💬 Chat Live Website</h2>
+      <p class="text-xs text-slate-500 mb-4">Pesan visitor realtime. Klik thread di kiri, balas di kanan — balasan langsung tampil di browser visitor.</p>
+      <div class="grid md:grid-cols-[260px_1fr] gap-4">
+        <div id="chatList" class="space-y-2 max-h-[460px] overflow-y-auto pr-1"></div>
+        <div class="neu-in p-4 flex flex-col h-[460px]">
+          <div id="chatBox" class="flex-1 overflow-y-auto flex flex-col gap-2 p-1"></div>
+          <form onsubmit="event.preventDefault(); balasChat();" class="flex gap-2 pt-3">
+            <input id="chatInput" class="neu-in px-4 py-2.5 text-sm flex-1" placeholder="Tulis balasan…" maxlength="800" autocomplete="off"/>
+            <button type="submit" class="btn-p px-5 rounded-xl text-xs font-bold">KIRIM</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
 
   <p id="toast" class="fixed bottom-5 right-5 hidden px-5 py-3 rounded-2xl bg-[#0B1B3D] text-white text-xs font-bold shadow-2xl"></p>
@@ -124,10 +141,10 @@ async function doLogout() { await sb.auth.signOut(); location.reload(); }
 function masuk() {
   $('loginView').classList.add('hidden'); $('panelView').classList.remove('hidden');
   $('userLabel').textContent = sb.auth.getUser().data?.user?.email || '';
-  muatKonten(); muatGaleri(); muatMedsos();
+  muatKonten(); muatGaleri(); muatMedsos(); muatChat(); langgananChat();
 }
 function tab(n) {
-  ['konten','galeri','medsos'].forEach(t => $('tab-' + t).classList.toggle('hidden', t !== n));
+  ['konten','galeri','medsos','chat'].forEach(t => $('tab-' + t).classList.toggle('hidden', t !== n));
 }
 
 /* ── KONTEN ── */
@@ -205,6 +222,57 @@ async function tambahMedsos() {
 }
 async function toggleMedsos(id, aktif) { await sb.from('socialLinks').update({ aktif }).eq('id', id); muatMedsos(); }
 async function hapusMedsos(id) { await sb.from('socialLinks').delete().eq('id', id); muatMedsos(); toast('Link dihapus'); }
+
+/* ── CHAT LIVE (pengganti Crisp) ── */
+let chatCache = {};
+let chatAktif = null;
+let chatChannel = null;
+async function muatChat() {
+  const { data, error } = await sb.from('chatThreads').select('*').order('pesanTerakhirPada', { ascending: false }).limit(50);
+  if (error) return toast('Gagal muat chat: ' + error.message, true);
+  $('chatList').innerHTML = (data || []).map(t => `
+    <button onclick="bukaThread('${t.id}')" class="neu-in px-4 py-3 w-full text-left ${chatAktif === t.id ? 'ring-2 ring-sky-400' : ''}">
+      <div class="flex justify-between gap-2 items-center">
+        <span class="text-xs font-black uppercase text-[#0284C7] truncate">${(t.nama || 'Visitor ' + t.sessionKey.slice(0,8))}</span>
+        ${t.belumDibaca ? `<span class="bg-[#FF5A1F] text-white text-[10px] font-black rounded-full px-2 py-0.5">${t.belumDibaca}</span>` : ''}
+      </div>
+      <p class="text-[11px] text-slate-500 truncate mt-0.5">${t.pesanTerakhir || '— belum ada pesan —'}</p>
+      <p class="text-[9px] text-slate-400 mt-0.5">${new Date(t.pesanTerakhirPada || t.createdAt).toLocaleString('id-ID')}</p>
+    </button>`).join('') || '<p class="text-xs text-slate-400">Belum ada percakapan masuk.</p>';
+}
+async function bukaThread(id) {
+  chatAktif = id;
+  muatChat();
+  const { data: msgs } = await sb.from('chatMessages').select('*').eq('threadId', id).order('createdAt', { ascending: true }).limit(200);
+  $('chatBox').innerHTML = (msgs || []).map(m => `
+    <div class="max-w-[85%] px-3.5 py-2 rounded-2xl text-[13px] leading-relaxed whitespace-pre-wrap break-words ${
+      m.pengirim === 'admin' ? 'self-end text-white rounded-br-sm' : 'self-start bg-white rounded-bl-sm'}"
+      style="${m.pengirim === 'admin' ? 'background:linear-gradient(145deg,#0284C7,#0369A1)' : 'box-shadow:3px 3px 7px #D9E9E5'}">
+      ${m.isi.replace(/&/g,'&amp;').replace(/</g,'&lt;')}<span class="block text-[9px] opacity-60 mt-0.5">${new Date(m.createdAt).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})}</span>
+    </div>`).join('') || '<p class="text-xs text-slate-400 self-center">Belum ada pesan di thread ini.</p>';
+  const box = $('chatBox'); box.scrollTop = box.scrollHeight;
+  await sb.from('chatThreads').update({ belumDibaca: 0 }).eq('id', id);
+  muatChat();
+}
+async function balasChat() {
+  const inp = $('chatInput');
+  const isi = inp.value.trim();
+  if (!isi || !chatAktif) return;
+  await sb.from('chatMessages').insert({ threadId: chatAktif, pengirim: 'admin', isi });
+  await sb.from('chatThreads').update({ pesanTerakhir: isi.slice(0,140), pesanTerakhirPada: new Date().toISOString() }).eq('id', chatAktif);
+  inp.value = '';
+  bukaThread(chatAktif);
+}
+function langgananChat() {
+  if (chatChannel) return;
+  chatChannel = sb.channel('taf-admin-chat');
+  chatChannel.on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chatMessages' }, (payload) => {
+    if (payload.new.pengirim === 'visitor') {
+      toast('💬 Pesan baru dari visitor');
+      if (chatAktif === payload.new.threadId) bukaThread(chatAktif); else muatChat();
+    }
+  }).subscribe();
+}
 
 /* Cek sesi login saat buka */
 sb?.auth.getSession().then(({ data }) => { if (data?.session) masuk(); });

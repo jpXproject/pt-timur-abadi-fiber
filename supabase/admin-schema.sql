@@ -1,5 +1,5 @@
 -- ============================================================================
--- CV. ABADI TIMUR FIBER — ADMIN PANEL SCHEMA (Supabase)
+-- CV. TIMUR ABADI FIBER — ADMIN PANEL SCHEMA (Supabase)
 -- Jalankan via: supabase/apply-schema.mjs (idempotent, aman diulang)
 -- ============================================================================
 
@@ -74,7 +74,7 @@ insert into "siteContent" (key, value, label, kategori) values
   ('hero_title',  'Wujudkan Wahana Waterpark Impian Bersama Kontraktor Profesional', 'Judul Hero', 'hero'),
   ('wa1',         '6281238242926', 'WhatsApp 1 (Fast Respon)', 'kontak'),
   ('wa2',         '6281357130170', 'WhatsApp 2 (Konsultasi Teknis)', 'kontak'),
-  ('email',       'admin@abaditimurfiber.com', 'Email Resmi', 'kontak'),
+  ('email',       'admin@timurabadi-fiber.com', 'Email Resmi', 'kontak'),
   ('alamat',      'Jl. Kimangun Sarkoro 31D No. 18, Tulungagung, Jawa Timur', 'Alamat Kantor', 'kontak'),
   ('jam_layanan', 'Senin - Sabtu, 08:00 - 16:00 WIB (24/7 Support Proyek)', 'Jam Layanan', 'kontak'),
   ('stat_pengalaman', '25+', 'Statistik: Tahun Pengalaman', 'umum'),

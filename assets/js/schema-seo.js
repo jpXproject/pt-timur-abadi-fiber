@@ -1,5 +1,5 @@
 /**
- * CV. ABADI TIMUR FIBER — JSON-LD Structured Data (SEO Grade A)
+ * CV. TIMUR ABADI FIBER — JSON-LD Structured Data (SEO Grade A)
  * ============================================================
  * Data terstruktur membuat Google memahami entitas bisnis: nama, lokasi
  * (Tulungagung → Jawa Timur → nasional), layanan, kontak, jam operasional.
@@ -20,12 +20,12 @@ const ORG = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
   '@id': DOMAIN + '/#organization',
-  name: 'CV. Abadi Timur Fiber',
-  alternateName: ['Abadi Timur Fiber', 'ATF Tulungagung', 'Kontraktor Waterpark Abadi Timur'],
+  name: 'CV. Timur Abadi Fiber',
+  alternateName: ['Timur Abadi Fiber', 'TAF Tulungagung', 'Kontraktor Waterpark Timur Abadi'],
   description: 'Produsen & General Contractor wahana waterpark fiberglass (FRP) di Tulungagung, Jawa Timur. Melayani konstruksi waterpark, desain 3D, water slide, playground air, renovasi, maintenance & painting untuk klien di seluruh Indonesia — 25+ tahun pengalaman, 21+ klien skala nasional.',
   url: DOMAIN + '/',
   telephone: ['+62-812-3824-2926', '+62-813-5713-0170'],
-  email: 'admin@abaditimurfiber.com',
+  email: 'admin@timurabadi-fiber.com',
   foundingDate: '2001',
   address: {
     '@type': 'PostalAddress',
@@ -63,7 +63,7 @@ const WEBSITE = {
   '@type': 'WebSite',
   '@id': DOMAIN + '/#website',
   url: DOMAIN + '/',
-  name: 'CV. Abadi Timur Fiber',
+  name: 'CV. Timur Abadi Fiber',
   publisher: { '@id': DOMAIN + '/#organization' },
   inLanguage: 'id-ID',
 };
@@ -89,12 +89,12 @@ const FAQ = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Berapa pengalaman CV. Abadi Timur Fiber dalam konstruksi waterpark?',
+      name: 'Berapa pengalaman CV. Timur Abadi Fiber dalam konstruksi waterpark?',
       acceptedAnswer: { '@type': 'Answer', text: 'Berpengalaman 25+ tahun di industri fiberglass, dan sejak 2017 bergerak sebagai General Contractor Waterpark terpadu dengan 21+ klien skala nasional seperti Jatim Park, Hawai Waterpark Malang, dan Taman Safari Prigen.' },
     },
     {
       '@type': 'Question',
-      name: 'Di mana lokasi pabrik & kantor CV. Abadi Timur Fiber?',
+      name: 'Di mana lokasi pabrik & kantor CV. Timur Abadi Fiber?',
       acceptedAnswer: { '@type': 'Answer', text: 'Kantor dan pabrik kami berada di Jl. Kimangun Sarkoro 31D No. 18, Tulungagung, Jawa Timur. Kami melayani kontrak konstruksi waterpark ke seluruh Indonesia — dari Sumatera, Jawa, hingga Sulawesi.' },
     },
     {
